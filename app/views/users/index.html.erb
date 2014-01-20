@@ -10,7 +10,10 @@
     <%= link_to "Sign in with Twitter", user_omniauth_authorize_path(:twitter) %>
   <% end %>
 
-  <% User.all.each do |user| %>
-    <%= user.username %>
-  <% end %>
+  <div>
+    <% User.all.each do |user| %>
+      <li><%= user.username %></li>
+      <li><%= image_tag user.image_url %></li>
+    <% end %>
+  </div>
 </div>
