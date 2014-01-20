@@ -5,6 +5,10 @@ Server::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'users#index'
+  get 'users' => 'friendships#index'
+  get 'friendships' => 'friendships#create'
+  get 'friends' => 'friendships#show'
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
