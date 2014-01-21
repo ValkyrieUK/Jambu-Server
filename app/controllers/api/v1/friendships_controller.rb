@@ -3,8 +3,8 @@ module Api
     class FriendshipsController < ApplicationController
     respond_to :json
 
-    def index
-      respond_with Friendship.all
-    end
+    # def index
+    #   respond_with Friendship.all
+    # end
   end
 end
