@@ -133,6 +133,7 @@ DEPENDENCIES
   devise
   jbuilder (~> 1.2)
   jquery-rails
+  json
   omniauth-twitter
   pg
   rails (= 4.0.1)

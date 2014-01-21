@@ -1,14 +1,17 @@
 Server::Application.routes.draw do
   devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks"}
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
+
+  namespace :api, defaults: {format: 'json'} do
+    namespace :v1 do
+      resources :users
+    end
+  end
 
   # You can have the root of your site routed with "root"
   root 'users#index'
   get 'users' => 'friendships#index'
   get 'friendships' => 'friendships#create'
   get 'friends' => 'friendships#show'
-
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
