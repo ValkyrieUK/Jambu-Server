@@ -18,6 +18,7 @@ module Api
       def destroy
         respond_with User.destroy(params[:id])
       end
+      
     end
   end
 end
