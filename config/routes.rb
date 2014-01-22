@@ -1,6 +1,4 @@
 Server::Application.routes.draw do
-  devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks"}
-
   namespace :api, defaults: {format: 'json'} do
     namespace :v1 do
       resources :users, :friendships
@@ -8,10 +6,10 @@ Server::Application.routes.draw do
   end
 
   # You can have the root of your site routed with "root"
-  root 'users#index'
-  get 'users' => 'friendships#index'
-  get 'friendships' => 'friendships#create'
-  get 'friends' => 'friendships#show'
+  # root 'users#index'
+  # get 'users' => 'friendships#index'
+  # get 'friendships' => 'friendships#create'
+  # get 'friends' => 'friendships#show'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

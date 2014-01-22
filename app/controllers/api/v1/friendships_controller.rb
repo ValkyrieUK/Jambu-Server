@@ -11,10 +11,6 @@ module Api
         respond_with User.find(params[:id]).friends
       end
 
-      def create
-
-      end
-
       def destroy
         respond_with User.find(params[:id]).friendships.find(params[:name])
       end
