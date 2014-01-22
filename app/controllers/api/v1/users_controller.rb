@@ -12,7 +12,7 @@ module Api
       end
 
       def create
-        respond_with User.new(user_params), location: nil
+        respond_with User.new(user_params).save, location: nil
       end
 
       def update 
@@ -26,7 +26,7 @@ module Api
       private
 
       def user_params
-        params.require(:user).permit(:username, :uid, :provider, :image_url)
+        params.require(:user).permit(:username, :uid, :provider, :image_url, :full_name)
       end
 
     end

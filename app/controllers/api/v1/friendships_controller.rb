@@ -12,7 +12,7 @@ module Api
       end
 
       def create
-        respond_with Friendship.new(friendship_params), location: nil
+        respond_with Friendship.new(friendship_params).save, location: nil
       end
 
       def destroy
