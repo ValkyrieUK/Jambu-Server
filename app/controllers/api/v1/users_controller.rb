@@ -2,23 +2,27 @@ module Api
   module V1
     class UsersController < ApplicationController
       respond_to :json
-      
+
       def index
-        respond_with User.all
+        respond_with  User.all
       end
 
       def show
-        respond_with User.search(params[:username])
+        respond_with User.find(params[:id])
       end
 
       def create
-        respond_with User.new(user_params).save!
+        respond_with User.new(user_params)
+      end
+
+      def update 
+        respond_with User.update(params[:id], user_params)
       end
 
       def destroy
         respond_with User.destroy(params[:id])
       end
-      
+
       private
 
       def user_params
