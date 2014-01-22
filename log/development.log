@@ -1701,3 +1701,118 @@ NoMethodError - undefined method `users_url' for #<Api::V1::UsersController:0x00
   /Users/bradleyallen/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/2.0.0/webrick/httpserver.rb:94:in `run'
   /Users/bradleyallen/.rvm/rubies/ruby-2.0.0-p247/lib/ruby/2.0.0/webrick/server.rb:295:in `block in start_thread'
 
+
+
+Started POST "/api/v1/users" for 127.0.0.1 at 2014-01-22 18:48:34 +0000
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by Api::V1::UsersController#create as JSON
+  Parameters: {"user"=>{"username"=>"TOM", "provider"=>"twitter", "uid"=>123, "image_url"=>"http://"}}
+Completed 500 Internal Server Error in 4ms
+
+ActiveModel::ForbiddenAttributesError (ActiveModel::ForbiddenAttributesError):
+  app/controllers/api/v1/users_controller.rb:15:in `create'
+
+
+  Rendered /Users/bradleyallen/.rvm/gems/ruby-2.0.0-p247@invite_project_server/gems/actionpack-4.0.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.4ms)
+  Rendered /Users/bradleyallen/.rvm/gems/ruby-2.0.0-p247@invite_project_server/gems/actionpack-4.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.7ms)
+  Rendered /Users/bradleyallen/.rvm/gems/ruby-2.0.0-p247@invite_project_server/gems/actionpack-4.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (13.3ms)
+  Rendered /Users/bradleyallen/.rvm/gems/ruby-2.0.0-p247@invite_project_server/gems/actionpack-4.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (22.8ms)
+
+
+Started POST "/api/v1/users" for 127.0.0.1 at 2014-01-22 18:51:05 +0000
+Processing by Api::V1::UsersController#create as JSON
+  Parameters: {"user"=>{"username"=>"TOM", "provider"=>"twitter", "uid"=>123, "image_url"=>"http://"}}
+Completed 500 Internal Server Error in 2ms
+
+ActiveModel::ForbiddenAttributesError (ActiveModel::ForbiddenAttributesError):
+  app/controllers/api/v1/users_controller.rb:15:in `create'
+
+
+  Rendered /Users/bradleyallen/.rvm/gems/ruby-2.0.0-p247@invite_project_server/gems/actionpack-4.0.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.5ms)
+  Rendered /Users/bradleyallen/.rvm/gems/ruby-2.0.0-p247@invite_project_server/gems/actionpack-4.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.7ms)
+  Rendered /Users/bradleyallen/.rvm/gems/ruby-2.0.0-p247@invite_project_server/gems/actionpack-4.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.7ms)
+  Rendered /Users/bradleyallen/.rvm/gems/ruby-2.0.0-p247@invite_project_server/gems/actionpack-4.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (8.9ms)
+
+
+Started POST "/api/v1/users" for 127.0.0.1 at 2014-01-22 18:53:02 +0000
+Processing by Api::V1::UsersController#create as JSON
+  Parameters: {"user"=>{"username"=>"TOM", "provider"=>"twitter", "uid"=>123, "image_url"=>"http://"}}
+Completed 500 Internal Server Error in 2ms
+
+ActiveModel::ForbiddenAttributesError (ActiveModel::ForbiddenAttributesError):
+  app/controllers/api/v1/users_controller.rb:15:in `create'
+
+
+  Rendered /Users/bradleyallen/.rvm/gems/ruby-2.0.0-p247@invite_project_server/gems/actionpack-4.0.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.4ms)
+  Rendered /Users/bradleyallen/.rvm/gems/ruby-2.0.0-p247@invite_project_server/gems/actionpack-4.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.1ms)
+  Rendered /Users/bradleyallen/.rvm/gems/ruby-2.0.0-p247@invite_project_server/gems/actionpack-4.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.1ms)
+  Rendered /Users/bradleyallen/.rvm/gems/ruby-2.0.0-p247@invite_project_server/gems/actionpack-4.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (11.2ms)
+
+
+Started POST "/api/v1/users" for 127.0.0.1 at 2014-01-22 18:53:30 +0000
+Processing by Api::V1::UsersController#create as JSON
+  Parameters: {"user"=>{"username"=>"TOM", "provider"=>"twitter", "uid"=>123, "image_url"=>"http://"}}
+Completed 500 Internal Server Error in 28ms
+
+NoMethodError (undefined method `users_url' for #<Api::V1::UsersController:0x007fe535e64098>):
+  app/controllers/api/v1/users_controller.rb:15:in `create'
+
+
+  Rendered /Users/bradleyallen/.rvm/gems/ruby-2.0.0-p247@invite_project_server/gems/actionpack-4.0.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.7ms)
+  Rendered /Users/bradleyallen/.rvm/gems/ruby-2.0.0-p247@invite_project_server/gems/actionpack-4.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.1ms)
+  Rendered /Users/bradleyallen/.rvm/gems/ruby-2.0.0-p247@invite_project_server/gems/actionpack-4.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.1ms)
+  Rendered /Users/bradleyallen/.rvm/gems/ruby-2.0.0-p247@invite_project_server/gems/actionpack-4.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (13.6ms)
+
+
+Started POST "/api/v1/users" for 127.0.0.1 at 2014-01-22 18:53:32 +0000
+Processing by Api::V1::UsersController#create as JSON
+  Parameters: {"user"=>{"username"=>"TOM", "provider"=>"twitter", "uid"=>123, "image_url"=>"http://"}}
+Completed 500 Internal Server Error in 2ms
+
+NoMethodError (undefined method `users_url' for #<Api::V1::UsersController:0x007fe535855620>):
+  app/controllers/api/v1/users_controller.rb:15:in `create'
+
+
+  Rendered /Users/bradleyallen/.rvm/gems/ruby-2.0.0-p247@invite_project_server/gems/actionpack-4.0.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.4ms)
+  Rendered /Users/bradleyallen/.rvm/gems/ruby-2.0.0-p247@invite_project_server/gems/actionpack-4.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.erb (0.7ms)
+  Rendered /Users/bradleyallen/.rvm/gems/ruby-2.0.0-p247@invite_project_server/gems/actionpack-4.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (0.7ms)
+  Rendered /Users/bradleyallen/.rvm/gems/ruby-2.0.0-p247@invite_project_server/gems/actionpack-4.0.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (10.3ms)
+
+
+Started POST "/api/v1/users" for 127.0.0.1 at 2014-01-22 18:53:51 +0000
+Processing by Api::V1::UsersController#create as JSON
+  Parameters: {"user"=>{"username"=>"TOM", "provider"=>"twitter", "uid"=>123, "image_url"=>"http://"}}
+Completed 201 Created in 7ms (Views: 0.3ms | ActiveRecord: 1.2ms)
+
+
+Started POST "/api/v1/users" for 127.0.0.1 at 2014-01-22 18:53:59 +0000
+Processing by Api::V1::UsersController#create as JSON
+  Parameters: {"user"=>{"username"=>"TOM", "provider"=>"twitter", "uid"=>123, "image_url"=>"http://"}}
+Completed 201 Created in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/api/v1/users" for 127.0.0.1 at 2014-01-22 18:54:18 +0000
+Processing by Api::V1::UsersController#create as JSON
+  Parameters: {"user"=>{"username"=>"TOMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM", "provider"=>"twitter", "uid"=>123, "image_url"=>"http://"}}
+Completed 201 Created in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/v1/users" for 127.0.0.1 at 2014-01-22 18:54:55 +0000
+Processing by Api::V1::UsersController#index as JSON
+  [1m[35mUser Load (0.5ms)[0m  SELECT "users".* FROM "users"
+Completed 200 OK in 5ms (Views: 3.8ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/api/v1/users" for 127.0.0.1 at 2014-01-22 18:55:18 +0000
+Processing by Api::V1::UsersController#create as JSON
+  Parameters: {"user"=>{"username"=>"TOMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM", "provider"=>"twitter", "uid"=>123, "image_url"=>"http://"}}
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (2.4ms)[0m  INSERT INTO "users" ("created_at", "image_url", "provider", "uid", "updated_at", "username") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["created_at", Wed, 22 Jan 2014 18:55:18 UTC +00:00], ["image_url", "http://"], ["provider", "twitter"], ["uid", 123], ["updated_at", Wed, 22 Jan 2014 18:55:18 UTC +00:00], ["username", "TOMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM"]]
+  [1m[36m (199.9ms)[0m  [1mCOMMIT[0m
+Completed 201 Created in 213ms (Views: 0.2ms | ActiveRecord: 203.8ms)
+
+
+Started GET "/api/v1/users" for 127.0.0.1 at 2014-01-22 18:55:26 +0000
+Processing by Api::V1::UsersController#index as JSON
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users"
+Completed 200 OK in 3ms (Views: 1.7ms | ActiveRecord: 0.4ms)
