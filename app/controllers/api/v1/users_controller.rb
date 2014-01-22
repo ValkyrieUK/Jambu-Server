@@ -16,7 +16,7 @@ module Api
       end
 
       def update 
-        respond_with User.update(params[:id], user_params)
+        respond_with User.update(params[:id], user_params).save
       end
 
       def destroy
