@@ -12,7 +12,7 @@ module Api
       end
 
       def create
-        respond_with User.new(user_params).save, location: nil
+        respond_with User.new(user_params), location: nil
       end
 
       def update 

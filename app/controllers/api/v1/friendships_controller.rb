@@ -4,15 +4,25 @@ module Api
       respond_to :json
 
       def index
-        respond_with 'Please include a user ID'
+        respond_with 'PLEASE INCLUDE A USERS ID'
       end
 
       def show
         respond_with User.find(params[:id]).friends
       end
 
+      def create
+        respond_with Friendship.new(friendship_params), location: nil
+      end
+
       def destroy
-        respond_with User.find(params[:id]).friendships.find(params[:name])
+        respond_with Friendship.find(params[:id])
+      end
+
+      private
+
+      def friendship_params
+        params.require(:friendship).permit(:user_id, :friend_id)
       end
 
     end
