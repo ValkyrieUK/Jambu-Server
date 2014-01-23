@@ -3,7 +3,7 @@ Invite Project Server
 
 ##
 Curl Requests  
-An example of a valid request
+An example of a valid request.
 
 ```
 curl http://localhost:3000/api/v1/users/3
