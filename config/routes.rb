@@ -1,10 +1,10 @@
 Server::Application.routes.draw do
   namespace :api, defaults: {format: 'json'} do
     namespace :v1 do
-      resources :users, :friendships
+      resources :users, except: :show
+      get 'users/:uid', to: 'users#show'
     end
   end
-
   # You can have the root of your site routed with "root"
   # root 'users#index'
   # get 'users' => 'friendships#index'
