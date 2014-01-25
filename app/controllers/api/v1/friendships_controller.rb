@@ -4,7 +4,7 @@ module Api
       respond_to :json
 
       def index
-        respond_with 'PLEASE INCLUDE A USERS ID'
+        respond_with Friendship.all
       end
 
       def show
