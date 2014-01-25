@@ -8,12 +8,17 @@ module Api
       end
 
       def show
-        respond_with User.find(params[:id])
+        respond_with User.find_by_username(params[:username])
       end
 
       # Not so sure about save here..
       def create
-        respond_with User.new(user_params).save, location: nil
+         user = User.new(user_params)
+        if user.save 
+          puts '*****************'
+        else
+          puts '@@@@@@@@@@@@@@@@@@@@@@@@@@@'
+        end
       end
 
       def update 
@@ -22,6 +27,10 @@ module Api
 
       def destroy
         respond_with User.destroy(params[:id])
+      end
+
+      def success
+        respond_with '*************************************'
       end
 
       private
