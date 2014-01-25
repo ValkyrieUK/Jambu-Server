@@ -4,18 +4,18 @@ module Api
       respond_to :json
 
       def index
-        respond_with  User.all
+        respond_with User.all
       end
 
       def show
-        respond_with User.find(params[:id])
+        respond_with User.find_by_uid(params[:uid])
       end
 
       def create
         respond_with User.new(user_params).save, location: nil
       end
 
-      def update 
+      def update
         respond_with User.update(params[:id], user_params).save
       end
 
@@ -28,7 +28,6 @@ module Api
       def user_params
         params.require(:user).permit(:username, :uid, :provider, :image_url, :full_name)
       end
-
     end
   end
 end
