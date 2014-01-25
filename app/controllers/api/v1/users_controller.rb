@@ -8,11 +8,11 @@ module Api
       end
 
       def show
-        respond_with User.find(params[:id])
+        respond_with User.find_by_username(params[:usernme])
       end
       # Not so sure about save here..
       def create
-        User.new(user_params).save, location = nil
+        respond_with User.new(user_params).save, location: nil
       end
 
       def update
