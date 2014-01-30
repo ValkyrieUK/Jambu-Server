@@ -1,5 +1,5 @@
+# Friends controller
 class FriendshipsController < ApplicationController
-  
   def index
     Friendship.all
   end
@@ -16,4 +16,3 @@ class FriendshipsController < ApplicationController
     Friendship.destroy(params[:id])
   end
 end
-
