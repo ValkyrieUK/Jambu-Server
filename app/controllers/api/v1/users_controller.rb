@@ -19,7 +19,7 @@ module Api
       end
 
       def update
-        respond_with User.find_by(params[:uid]).update( user_params )
+        respond_with User.find_by(params[:uid]).update(user_params)
       end
 
       def destroy
