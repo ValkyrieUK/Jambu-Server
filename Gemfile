@@ -10,4 +10,5 @@ gem 'json'
 group :test, :development do
   gem 'rubocop'
   gem 'rspec-rails'
+  gem 'factory_girl_rails'
 end

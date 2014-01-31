@@ -5,4 +5,5 @@ class User < ActiveRecord::Base
 
   validates :provider, :uid, :username, :image_url, :full_name, presence: true
   validates :uid, uniqueness: true
+  validates :provider, format: /\A(twitter)\Z/
 end
