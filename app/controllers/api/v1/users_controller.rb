@@ -1,5 +1,8 @@
+# API Users controller
 module Api
+# API Users controller
   module V1
+    # API Users controller
     class UsersController < ApplicationController
       respond_to :json
 
@@ -16,11 +19,11 @@ module Api
       end
 
       def update
-        respond_with User.update(params[:id], user_params).save
+        respond_with User.find_by(params[:uid]).update(user_params)
       end
 
       def destroy
-        respond_with User.destroy(params[:id])
+        respond_with User.find_by(params[:uid]).destroy
       end
 
       private

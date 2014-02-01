@@ -1,6 +1,9 @@
+# User Class
 class User < ActiveRecord::Base
- has_many :friendships
- has_many :friends, through: :friendships
+  has_many :friendships
+  has_many :friends, through: :friendships
 
- validates_presence_of :provider, :uid, :username, :image_url, :full_name
+  validates :provider, :uid, :username, :image_url, :full_name, presence: true
+  validates :uid, uniqueness: true
+  validates :provider, format: /\A(twitter)\Z/
 end
