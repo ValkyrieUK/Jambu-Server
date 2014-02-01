@@ -4,6 +4,7 @@ FactoryGirl.define do
     username              'BillyBob'
     image_url             'http://...'
     full_name             'Bill Bob'
-    uid                    '1234'
+    uid                   '1234'
+    colour                'red'
   end
 end
