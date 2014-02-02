@@ -7,7 +7,7 @@ module Api
       respond_to :json
 
       def index
-        res pond_with users: User.all
+        respond_with users: User.all
       end
 
       def show
