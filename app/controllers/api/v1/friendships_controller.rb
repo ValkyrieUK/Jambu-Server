@@ -11,7 +11,7 @@ module Api
       end
 
       def show
-        respond_with User.find_by(params[:uid]).friends
+        respond_with User.find(params[:id]).friends
       end
 
       def create
