@@ -7,13 +7,13 @@ module Api
       respond_to :json
 
       def index
-        respond_with User.all
+        res pond_with users: User.all
       end
 
       def show
         respond_with User.find_by_uid(params[:uid])
       end
-      # Not so sure about save here..
+
       def create
         respond_with User.new(user_params).save, location: nil
       end
