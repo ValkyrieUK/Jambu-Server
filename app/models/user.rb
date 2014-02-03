@@ -8,4 +8,10 @@ class User < ActiveRecord::Base
   validates :provider, :uid, :username, :image_url, :full_name, :colour, presence: true
   validates :uid, uniqueness: true
   validates :provider, format: /\A(twitter)\Z/
+
+  def self.search(search, find_options = {})
+    if search
+      self.where('username LIKE ?', "%#{search}%").load
+    end
+  end
 end
