@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
 
   def self.search(search, find_options = {})
     if search
-      self.where('username LIKE ?', "%#{search}%").load
+      self.where('username iLIKE ?', "%#{search}%").load
     end
   end
 end
