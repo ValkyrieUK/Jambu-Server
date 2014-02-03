@@ -1,7 +1,7 @@
+# Friends Class
 class Friendship < ActiveRecord::Base
   belongs_to :user
   belongs_to :friend, class_name: 'User'
 
-  validates_uniqueness_of :friend_id, message: 'Already your friend'
-
+  validates :friend_id, uniqueness: true
 end

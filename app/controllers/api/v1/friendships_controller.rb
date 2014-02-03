@@ -1,5 +1,8 @@
+# API Users controller
 module Api
+  # API Users controller
   module V1
+    # API friendships controller
     class FriendshipsController < ApplicationController
       respond_to :json
 
@@ -24,7 +27,6 @@ module Api
       def friendship_params
         params.require(:friendship).permit(:user_id, :friend_id)
       end
-
     end
   end
 end

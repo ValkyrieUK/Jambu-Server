@@ -1,3 +1,4 @@
+# User controller
 class UsersController < ApplicationController
   def index
     User.all
@@ -13,5 +14,5 @@ class UsersController < ApplicationController
 
   def destroy
     User.find(params[:id]).destroy
-  end 
+  end
 end
