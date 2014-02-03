@@ -11,7 +11,7 @@ module Api
       end
 
       def show
-        respond_with user: User.find_by_uid(params[:uid])
+        respond_with User.find_by_uid(params[:uid])
       end
 
       def create
