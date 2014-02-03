@@ -11,7 +11,7 @@ module Api
       end
       
       def show
-        respond_with User.search(params[:id])
+        respond_with users: User.search(params[:id])
       end
 
     end
