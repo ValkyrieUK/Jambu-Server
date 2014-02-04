@@ -6,6 +6,8 @@ gem 'rails', '4.0.2'
 # Use postgresql as the database for Active Record
 gem 'pg'
 gem 'json'
+gem 'activeadmin', github: 'gregbell/active_admin'
+
 
 group :test, :development do
   gem 'rubocop'

@@ -6,7 +6,7 @@ class Friendship < ActiveRecord::Base
 
   def check_for_duplicates?(find_options = {})
     if Friendship.where(find_options, conditions: ['user_id = ? and friend_id = ?', user_id, friend_id]).any?
-      fail 'Duplicate'
+      raise 'Duplicate'
     end
   end
 end
