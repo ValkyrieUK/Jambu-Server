@@ -23,7 +23,7 @@ describe 'Users API' , type: :api do
     post 'api/v1/users', user: {
                                  uid: '4321', username: 'Mike123',
                                  full_name: 'Michael Scofield', image_url: 'http://...',
-                                 provider: 'twitter'
+                                 provider: 'twitter', image_thumnail: 'http://...'
                                }
     response.status.should be(201)
   end
