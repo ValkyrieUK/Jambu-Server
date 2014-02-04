@@ -10,8 +10,6 @@ class User < ActiveRecord::Base
   validates :provider, format: /\A(twitter)\Z/
 
   def self.search(search, find_options = {})
-    if search
-      self.where('username iLIKE ?', "%#{search}%").load
-    end
+    User.where('username iLIKE ?', "%#{search}%").load if search
   end
 end

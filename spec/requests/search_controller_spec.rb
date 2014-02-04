@@ -4,7 +4,7 @@ describe 'Search API' , type: :api do
 
   it 'should return a valid search result' do
     user = FactoryGirl.create(:user)
-    get "api/v1/search/#{user.username[0..5]}"
+    get "api/v1/search/#{user.username}"
     expect(response).to be_success
     expect(json['users'].first['uid']).to eq(user.uid)
     expect(json['users'].first['username']).to eq(user.username)
@@ -13,6 +13,4 @@ describe 'Search API' , type: :api do
     expect(json['users'].first['provider']).to eq(user.provider)
     response.status.should be(200)
   end
-
-
 end

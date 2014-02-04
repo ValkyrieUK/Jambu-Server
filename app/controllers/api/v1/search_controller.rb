@@ -9,11 +9,10 @@ module Api
       def index
         respond_with 'Please provide a search term'
       end
-      
+
       def show
         respond_with users: User.search(params[:id])
       end
-
     end
   end
 end
