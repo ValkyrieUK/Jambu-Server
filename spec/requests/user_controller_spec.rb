@@ -16,6 +16,7 @@ describe 'Users API' , type: :api do
     expect(json['full_name']).to eq(user.full_name)
     expect(json['image_url']).to eq(user.image_url)
     expect(json['provider']).to eq(user.provider)
+    response.status.should be(200)
   end
 
   it 'should be able to create a new user and save them via the API' do
@@ -29,7 +30,7 @@ describe 'Users API' , type: :api do
 
   it 'should be able to update a user' do
     user = FactoryGirl.create(:user)
-    put "api/v1/users/#{user.uid}", user: { username: 'JohnDoe' }
+    put "api/v1/users/#{user.id}", user: { username: 'JohnDoe' }
     response.status.should be(204)
   end
 
