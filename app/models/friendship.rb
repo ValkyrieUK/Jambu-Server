@@ -5,6 +5,6 @@ class Friendship < ActiveRecord::Base
   before_save :check_for_duplicates?
 
   def check_for_duplicates?
-    fail 'Duplicate'  if Friendship.find(:all, conditions: ['user_id = ? and friend_id = ?', user_id, friend_id]).any?
+    fail 'Duplicate'  if Friendship.all(conditions: ['user_id = ? and friend_id = ?', user_id, friend_id]).any?
   end
 end
