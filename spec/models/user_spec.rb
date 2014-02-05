@@ -40,8 +40,10 @@ describe User do
               provider: 'twitter',
               username: 'BillyBob',
               image_url: 'http://...',
+              image_thumbnail: 'http:..',
               full_name: 'Bill Bob',
-              uid: '1234')
+              uid: '1234',
+              colour: 'blue')
     @duplicate_user.save.should be false
   end
 
@@ -50,4 +52,48 @@ describe User do
     @user.save.should be false
   end
 
+  it 'should reject a user with a username longer than 35 characters' do
+    @user.username = 'b' * 36
+    @user.save.should be false
+    @user2  = User.create(
+              provider: 'twitter',
+              username: 'asadada',
+              image_url: 'http://...',
+              image_thumbnail: 'http:..',
+              full_name: 'Bill Bsadaob',
+              uid: '1231123',
+              colour: 'blue')
+    @user2.username = 'b' * 35
+    @user2.save.should be true
+  end
+
+  it 'should reject a user with a full_name longer than 35 characters' do
+    @user.full_name = 'b' * 36
+    @user.save.should be false
+    @user2  = User.create(
+              provider: 'twitter',
+              username: 'asadada',
+              image_url: 'http://...',
+              image_thumbnail: 'http:..',
+              full_name: 'Bill Bsadaob',
+              uid: '1231123',
+              colour: 'blue')
+    @user2.full_name = 'b' * 35
+    @user2.save.should be true
+  end
+
+  it 'should reject a user with a colour longer than 35 characters' do
+    @user.colour = 'b' * 36
+    @user.save.should be false
+    @user2  = User.create(
+              provider: 'twitter',
+              username: 'asadada',
+              image_url: 'http://...',
+              image_thumbnail: 'http:..',
+              full_name: 'Bill Bsadaob',
+              uid: '1231123',
+              colour: 'blue')
+    @user2.colour = 'b' * 35
+    @user2.save.should be true
+  end
 end
