@@ -4,10 +4,12 @@ source 'https://rubygems.org'
 gem 'rails', '4.0.2'
 
 # Use postgresql as the database for Active Record
-gem 'pg'
 gem 'json'
 gem 'activeadmin', github: 'gregbell/active_admin'
 
+group :production do
+  gem 'pg'
+end
 
 group :test, :development do
   gem 'rubocop'
@@ -16,4 +18,5 @@ group :test, :development do
   gem 'factory_girl_rails', require: false
   gem 'faker'
   gem 'brakeman'
+  gem 'rails-erd'
 end

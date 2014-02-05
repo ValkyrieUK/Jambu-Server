@@ -1,5 +1,5 @@
 ActiveAdmin.register Event do
-  permit_params :title, :description, :user_id
+  permit_params :title, :description, :user_id, :time_of_event
  index do
     selectable_column
     column :id
