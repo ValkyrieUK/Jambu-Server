@@ -18,5 +18,6 @@ group :test, :development do
   gem 'factory_girl_rails', require: false
   gem 'faker'
   gem 'brakeman'
+  gem 'database_cleaner'
   gem 'rails-erd'
 end

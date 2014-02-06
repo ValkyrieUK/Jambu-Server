@@ -5,7 +5,9 @@ Server::Application.routes.draw do
   namespace :api, defaults: {format: 'json'} do
     namespace :v1 do
       resources :search
+      resources :attendees
       resources :friendships
+      resources :events
       resources :users, except: :show
       get 'users/:uid', to: 'users#show'
     end
