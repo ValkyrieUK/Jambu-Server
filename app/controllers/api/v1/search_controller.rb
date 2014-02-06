@@ -1,8 +1,8 @@
-# API Users controller
+# API Search controller
 module Api
-# API Users controller
+# API Search controller
   module V1
-    # API Users controller
+    # API Search controller
     class SearchController < ApplicationController
       respond_to :json
 

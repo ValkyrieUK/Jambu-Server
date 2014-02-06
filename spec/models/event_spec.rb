@@ -6,8 +6,8 @@ describe Event do
   end
 
   it 'should be able to create a event' do
-    @event = Event.create(title: 'Pub', description: 'pub with the ladz',
-                          user_id: "#{@user.id}")
+    @event = Event.create!(title: 'Pub', description: 'pub with the ladz',
+                          user_id: 1, time_of_event: "1238219381")
     @event.save.should be true
   end
 

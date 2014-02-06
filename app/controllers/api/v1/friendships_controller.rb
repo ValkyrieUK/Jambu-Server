@@ -1,17 +1,17 @@
-# API Users controller
+# API Friendships controller
 module Api
-  # API Users controller
+  # API Friendships controller
   module V1
-    # API friendships controller
+    # API Friendships controller
     class FriendshipsController < ApplicationController
       respond_to :json
 
       def index
-        respond_with friendships: Friendship.all
+        respond_with 'Provide a User ID'
       end
 
       def show
-        respond_with User.find(params[:id]).friends
+        respond_with friendships: User.find(params[:id]).friends
       end
 
       def create
