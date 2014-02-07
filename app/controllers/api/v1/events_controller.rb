@@ -18,6 +18,11 @@ module Api
         respond_with Event.new(event_params).save, location: nil
       end
 
+      def update
+        event = event.find([:id])
+        respond_with event.update(event_params)
+      end
+
       def destroy
         respond_with Event.find(params[:id]).destroy
       end
