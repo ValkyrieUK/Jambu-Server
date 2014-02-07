@@ -6,6 +6,7 @@ ActiveAdmin.register Attendee do
     column :id
     column :event
     column :user
+    column :created_at
     default_actions
   end
 end
