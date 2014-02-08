@@ -19,7 +19,7 @@ module Api
       end
 
       def destroy
-        respond_with Friendship.find(params[:id]).delete
+        respond_with Friendship.find(parmas[:friend_id]).delete
       end
 
       private
