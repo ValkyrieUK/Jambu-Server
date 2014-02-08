@@ -11,7 +11,10 @@ module Api
       end
 
       def show
-        respond_with friendships: User.find(params[:id]).friends
+        # User.find(params[:id]).friends
+        hash = { friendships: User.find(params[:id]).friends,
+                 friendshipids: User.find(params[:id]).friendships }
+        respond_with hash
       end
 
       def create
@@ -19,7 +22,7 @@ module Api
       end
 
       def destroy
-        respond_with Friendship.find(parmas[:friend_id]).delete
+        respond_with Friendship.find(pramas[:id]).friends.find(params[:id]).delete
       end
 
       private
