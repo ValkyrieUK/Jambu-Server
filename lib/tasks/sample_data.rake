@@ -21,7 +21,7 @@ namespace :db do
     end
   end
 
-    task :friendbomb => environment do
+    task :friendbomb => :environment do
      10000.times do |n|
       user_id = rand(5000)
       friend_id = rand(5000)
