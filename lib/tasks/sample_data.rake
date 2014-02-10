@@ -16,7 +16,16 @@ namespace :db do
                     :uid => uid,
                     :colour => colour,
                     :provider => provider,
-                    :image_url => 'https://pbs.twimg.com/profile_images/2955559089/83f09d26307253decde4d58ecd14c2e9.jpeg')
+                    :image_url => 'https://pbs.twimg.com/profile_images/2955559089/83f09d26307253decde4d58ecd14c2e9.jpeg',
+                    :image_thumbnail => 'http://www.tennisalternative.com/images/avatars/100x100[283].jpg')
+    end
+  end
+
+    task :friendbomb => environment do
+     10000.times do |n|
+      user_id = rand(5000)
+      friend_id = rand(5000)
+      Friendship.create!(user_id: user_id, friend_id: friend_id)
     end
   end
 end
