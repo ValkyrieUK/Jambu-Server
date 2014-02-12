@@ -4,6 +4,7 @@ Server::Application.routes.draw do
   ActiveAdmin.routes(self)
   namespace :api, defaults: {format: 'json'} do
     namespace :v1 do
+      resources :count
       resources :search
       resources :attendees
       resources :friendships
