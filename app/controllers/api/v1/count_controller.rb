@@ -7,7 +7,7 @@ module Api
       respond_to :json
 
       def show
-        respond_with User.find(params[:id]).friends.count
+        respond_with friends: User.find_by_uid(params[:id]).friends.count
       end
 
     end

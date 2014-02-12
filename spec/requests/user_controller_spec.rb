@@ -17,6 +17,7 @@ describe 'Users API' , type: :api do
     expect(json['image_url']).to eq(user.image_url)
     expect(json['provider']).to eq(user.provider)
     response.status.should be(200)
+    User.count.should be 1
   end
 
   it 'should be able to create a new user and save them via the API' do
@@ -35,6 +36,7 @@ describe 'Users API' , type: :api do
     get "api/v1/users/#{user.uid}"
     expect(json['username']).to eq('JohnDoe')
     response.status.should be(200)
+    User.count.should be 1
   end
 
   it 'should be able to delete users' do
