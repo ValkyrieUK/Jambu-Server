@@ -17,4 +17,12 @@ describe 'Users API' , type: :api do
     post 'api/v1/friendships', friendship: { user_id: 1, friend_uid: 2 }
     response.status.should be(201)
   end
+
+  it 'should be able to delte a friendship' do
+    @friendship = Friendship.create(
+      user_id: 1, friend_id: 2)
+    Friendship.count.should be 1
+    delete "api/v1/friendships/#{@friendship.id}"
+    Friendship.count.should be 0
+  end
 end

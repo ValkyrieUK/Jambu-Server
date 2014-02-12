@@ -6,6 +6,7 @@ gem 'rails', '4.0.2'
 # Use postgresql as the database for Active Record
 gem 'json'
 gem 'activeadmin', github: 'gregbell/active_admin'
+gem 'puma'
 
 group :production do
   gem 'pg'
