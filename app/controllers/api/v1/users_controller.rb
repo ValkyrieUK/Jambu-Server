@@ -17,7 +17,7 @@ module Api
           counts: {
             friends: user.friends.count ,
             events_created: user.events.count,
-            events_attended: 'Some Value' }
+            events_attended: 0 }
         }
         respond_with user_hash
       end
