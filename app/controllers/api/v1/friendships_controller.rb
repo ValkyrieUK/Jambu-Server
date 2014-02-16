@@ -11,7 +11,6 @@ module Api
       end
 
       def show
-        # User.find(params[:id]).friends
         hash = { friendships: User.find(params[:id]).friends,
                  friendshipids: User.find(params[:id]).friendships }
         respond_with hash

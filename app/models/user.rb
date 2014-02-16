@@ -12,6 +12,6 @@ class User < ActiveRecord::Base
   validates :username, :full_name, :colour, length: { maximum: 35 }
 
   def self.search(search, find_options = {})
-    User.where('username iLIKE ? or full_name iLIKE ?', "%#{search}%", "%#{search}%").load if search
+    User.where('username iLIKE ? or full_name iLIKE ?', "%#{search}%", "%#{search}%") if search
   end
 end

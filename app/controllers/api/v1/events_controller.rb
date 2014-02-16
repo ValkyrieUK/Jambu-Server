@@ -15,12 +15,22 @@ module Api
       end
 
       def create
-        respond_with Event.new(event_params).save, location: nil
+        event = Event.new(event_params)
+        if event.save
+          respond_with event, location: nil
+        else
+          render json: { errors: event.errors.full_messages }
+        end
       end
 
       def update
         event = event.find([:id])
-        respond_with event.update(event_params)
+        event.update(event_params)
+        if event.save
+          respond_with event
+        else
+          render json: { errors: event.errors.full_messages }
+        end
       end
 
       def destroy

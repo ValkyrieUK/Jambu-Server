@@ -7,20 +7,38 @@ module Api
       respond_to :json
 
       def index
-        respond_with users: User.all
+        respond_with 'Please provide a UID'
       end
 
       def show
-        respond_with User.find_by_uid(params[:uid])
+        user = User.find_by_uid(params[:uid])
+        user_hash = {
+          user: user,
+          counts: {
+            friends: user.friends.count ,
+            events_created: user.events.count,
+            events_attended: 'Some Value' }
+        }
+        respond_with user_hash
       end
 
       def create
-        respond_with User.new(user_params).save, location: nil
+        user = User.new(user_params)
+        if user.save
+          respond_with user, location: nil
+        else
+          render json: { errors: user.errors.full_messages }
+        end
       end
 
       def update
         user = User.find(params[:id])
-        respond_with user.update(user_params)
+        user.update(user_params)
+        if user.save
+          respond_with user
+        else
+          render json: { errors: user.errors.full_messages }
+        end
       end
 
       def destroy
