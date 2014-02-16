@@ -25,7 +25,7 @@ module Api
       end
 
       def create
-        user = User.new(user_params)
+        user = User.find_or_create_by(user_params)
         if user.save
           respond_with user, location: nil
         else
