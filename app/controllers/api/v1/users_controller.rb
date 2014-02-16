@@ -18,7 +18,8 @@ module Api
             friends: user.friends.count ,
             added_as_friend: User.joins(:friendships).merge(Friendship.where(friend_id: user.id)).count,
             events_created: user.events.count,
-            events_attended: 0 }
+            events_attended: 0,
+            event_invites_pending: 0 }
         }
         respond_with user_hash
       end
