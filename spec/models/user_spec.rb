@@ -101,4 +101,10 @@ describe User do
     @user.update(username: 'HeyLookImUpdated')
     @user.username.should eq('HeyLookImUpdated')
   end
+
+  it 'should be able to search for a user' do
+    @user.save
+    search = User.search(@user.username)
+    search.should eq(search)
+  end
 end
