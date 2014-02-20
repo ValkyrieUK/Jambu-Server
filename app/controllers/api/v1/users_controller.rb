@@ -7,7 +7,7 @@ module Api
       respond_to :json
 
       def index
-        respond_with 'Please provide a UID'
+        respond_with 'Please provide UID'
       end
 
       def show
