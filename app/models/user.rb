@@ -14,15 +14,4 @@ class User < ActiveRecord::Base
   def self.search(search, find_options = {})
     User.where('username iLIKE ? or full_name iLIKE ?', "%#{search}%", "%#{search}%") if search
   end
-
-    future_time = Time.now.to_f + 3.seconds
-    future_time2 = Time.now.to_f + 5.seconds
-    # future_time3 = Time.now.to_i + 7.seconds
-  loop do
-    puts "THE TIME is #{future_time}" if Time.now.to_f == future_time
-    puts "THE TIME is #{future_time2}" if Time.now.to_f == future_time2
-  end
-
-  # loop do
-  # end    # puts "THE TIME is #{future_time3}" if Time.now.to_f == future_time3
 end
