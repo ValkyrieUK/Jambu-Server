@@ -6,15 +6,17 @@ class ApplicationController < ActionController::Base
   http_basic_authenticate_with name: username, password: password, :if => :admin_controller?
 
 
+  def admin_controller?
+    self.class < ActiveAdmin::BaseController
+  end
+
+  private
+
   def username
     'xaler'
   end
 
   def password
     'n[Q3}UK2>dM4Y7'
-  end
-
-  def admin_controller?
-    self.class < ActiveAdmin::BaseController
   end
 end
