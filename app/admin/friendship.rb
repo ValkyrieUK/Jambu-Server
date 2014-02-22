@@ -1,5 +1,5 @@
 ActiveAdmin.register Friendship do
-  permit_params :user_id, :friend_id  
+  permit_params :user_id, :friend_id
 
   index do
     selectable_column

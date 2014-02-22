@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :event do
-    title "MyString"
-    description "MyText"
+    title 'MyString'
+    description 'MyText'
   end
 end

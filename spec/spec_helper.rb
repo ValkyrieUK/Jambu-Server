@@ -5,7 +5,7 @@ require 'rspec/rails'
 require 'rspec/autorun'
 require 'factory_girl_rails'
 require 'database_cleaner'
-
+require 'capybara/rspec'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
@@ -19,7 +19,7 @@ RSpec.configure do |config|
   config.include Requests::JsonHelpers, type: :request
   config.include FactoryGirl::Syntax::Methods
 
- config.before(:suite) do
+  config.before(:suite) do
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.clean_with(:truncation)
   end

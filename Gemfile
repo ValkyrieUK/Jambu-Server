@@ -13,6 +13,7 @@ group :production do
 end
 
 group :test, :development do
+  gem 'capybara'
   gem 'rubocop'
   gem 'rspec-rails'
   gem 'guard-rspec'

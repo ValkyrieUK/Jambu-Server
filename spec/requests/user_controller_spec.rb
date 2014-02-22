@@ -25,7 +25,7 @@ describe 'Users API' , type: :api do
      uid: '4321', username: 'Mike123',
      full_name: 'Michael Scofield', image_url: 'http://...',
      provider: 'twitter', image_thumnail: 'http://...',
-     colour: 'blue'}
+     colour: 'blue' }
     response.status.should be(200)
   end
 

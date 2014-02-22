@@ -8,14 +8,14 @@ describe Event do
   it 'should be able to create a event' do
     @event = Event.create(
       title: 'Pub', description: 'pub with the ladz',
-      user_id: 1, time_of_event: "1238219381")
+      user_id: 1, time_of_event: '1238219381')
     @event.save.should be true
   end
 
   it 'should be able to destroy an event' do
     event = Event.create(
       title: 'Pub', description: 'pub with the ladz',
-      user_id: 1, time_of_event: "1238219381")
+      user_id: 1, time_of_event: '1238219381')
     Event.count.should eq(1)
     event.destroy
     Event.count.should eq(0)
@@ -24,7 +24,7 @@ describe Event do
   it 'should be able to update a event' do
     Event.create(
     title: 'Pub', description: 'pub with the ladz',
-    user_id: 1, time_of_event: "1238219381")
+    user_id: 1, time_of_event: '1238219381')
     Event.last.update(title: 'not the pub')
     Event.last.title.should eq('not the pub')
   end
