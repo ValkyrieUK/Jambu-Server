@@ -21,7 +21,10 @@ module Api
       end
 
       def destroy
-        respond_with Friendship.find(params[:id]).delete
+        friendship = Friendship.find(params[:id])
+        respond_with friendship.delete
+        Activity.where(user_id: friendship.user_id, friend_id: friendship.friend_id,
+          action: 'friend added').last.destroy
       end
 
       private
