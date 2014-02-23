@@ -8,7 +8,7 @@ module Api
 
       def show
         user = User.find_by_uid(params[:id])
-        respond_with feed: user.activities.reverese.limit(20)
+        respond_with feed: user.activities.reverse.limit(20)
       end
 
     end
