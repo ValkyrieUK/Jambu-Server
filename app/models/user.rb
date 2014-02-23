@@ -1,5 +1,9 @@
 # User Class
 class User < ActiveRecord::Base
+  before_save :track
+
+  has_many :activities
+  has_many :activities, class_name: 'Activity', foreign_key: 'user_id'
   has_many :events
   has_many :friendships
   has_many :friends, through: :friendships
@@ -13,5 +17,9 @@ class User < ActiveRecord::Base
 
   def self.search(search, find_options = {})
     User.where('username iLIKE ? or full_name iLIKE ?', "%#{search}%", "%#{search}%") if search
+  end
+
+  def track
+    Activity.create(user_id: id, action: 'user created')
   end
 end
