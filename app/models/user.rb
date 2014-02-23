@@ -1,7 +1,7 @@
 # User Class
 class User < ActiveRecord::Base
   before_save :track, on: :create
-  before_save :track_update, on: :update
+  # before_save :track_update, on: :update
 
   has_many :activities
   has_many :activities, class_name: 'Activity', foreign_key: 'user_id'

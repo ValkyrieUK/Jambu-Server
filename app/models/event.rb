@@ -1,7 +1,7 @@
 # Event Model
 class Event < ActiveRecord::Base
   before_save :track, on: :create
-  before_save :track_update, on: :update
+  # before_save :track_update, on: :update
 
   belongs_to :user
 
