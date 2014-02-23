@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 20140223152228) do
   create_table "activities", force: true do |t|
     t.integer  "user_id"
     t.string   "action"
+    t.string   "name"
     t.string   "argument"
     t.datetime "created_at"
     t.datetime "updated_at"

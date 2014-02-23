@@ -1,7 +1,6 @@
 # User Class
 class User < ActiveRecord::Base
   after_create :track
-  before_save :track_update, on: :update
 
   has_many :activities
   has_many :activities, class_name: 'Activity', foreign_key: 'user_id'
@@ -18,10 +17,6 @@ class User < ActiveRecord::Base
 
   def self.search(search, find_options = {})
     User.where('username iLIKE ? or full_name iLIKE ?', "%#{search}%", "%#{search}%") if search
-  end
-
-  def track_update
-    Activity.create(user_id: id, action: 'user updated')
   end
 
   def track

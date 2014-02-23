@@ -19,13 +19,13 @@ describe Friendship do
   end
 
   it 'should not create a friendship that already exits' do
-    Friendship.create(user_id: 2, friend_id: 1)
-    friendship2 = Friendship.create(user_id: 2, friend_id: 1)
+    Friendship.create(user_id: @user.id, friend_id: @friend.id)
+    friendship2 = Friendship.create(user_id: @user.id, friend_id: @friend.id)
     friendship2.save.should be false
   end
 
   it 'should be able to destroy a friendship' do
-    friendship = Friendship.create(user_id: 2, friend_id: 1)
+    friendship = Friendship.create(user_id: @user.id, friend_id: @friend.id)
     Friendship.count.should eq(1)
     friendship.destroy
     Friendship.count.should eq(0)

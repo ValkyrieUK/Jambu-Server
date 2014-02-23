@@ -9,6 +9,8 @@ class Friendship < ActiveRecord::Base
   validates :user_id, uniqueness: { scope: :friend_id }
 
   def track
-    Activity.create(user_id: user_id, action: 'friend added', argument: friend_id)
+    friend = User.find(friend_id)
+    Activity.create(user_id: user_id, action: 'friend added',
+     name: friend.full_name, argument: friend.uid)
   end
 end
