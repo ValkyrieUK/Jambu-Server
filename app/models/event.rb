@@ -1,6 +1,6 @@
 # Event Model
 class Event < ActiveRecord::Base
-  after_create :track
+  after_save :track
 
   belongs_to :user
 
