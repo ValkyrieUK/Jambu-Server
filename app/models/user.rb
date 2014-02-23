@@ -1,6 +1,6 @@
 # User Class
 class User < ActiveRecord::Base
-  after_save :track
+  after_create :track
 
   has_many :activities
   has_many :activities, class_name: 'Activity', foreign_key: 'user_id'
