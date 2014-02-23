@@ -1,6 +1,7 @@
 # Event Model
 class Event < ActiveRecord::Base
-  before_save :track
+  before_save :track, on: :create
+  before_save :track_update, on: :update
 
   belongs_to :user
 
@@ -13,5 +14,9 @@ class Event < ActiveRecord::Base
 
   def track
     Activity.create(user_id: user_id, action: 'event created', argument: title)
+  end
+
+  def track_update
+    Activity.create(user_id: user_id, action: 'event updated', argument: title)
   end
 end

@@ -1,6 +1,6 @@
 # Friends Class
 class Friendship < ActiveRecord::Base
-  before_save :track
+  before_save :track, on: :create
 
   belongs_to :user
   belongs_to :friend, class_name: 'User'
