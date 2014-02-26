@@ -1,5 +1,5 @@
 ActiveAdmin.register User do
-  permit_params :provider, :username, :image_url, :image_thumbnail, :full_name, :uid, :colour
+  permit_params :provider, :username, :image_url, :image_thumbnail, :full_name, :uid, :colour, :device_token
 
   index do
     selectable_column
