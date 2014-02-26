@@ -18,6 +18,9 @@ module Api
 
       def create
         respond_with Friendship.new(friendship_params).save, location: nil
+        friend = User.find(friendship_params['friend_id'])
+        user = User.find(friendship_params['user_id'])
+        APNS.send_notification(friend.device_token,  "#{user.full_name} is now following you!") unless friend.device_token == 'NONE'
       end
 
       def destroy
