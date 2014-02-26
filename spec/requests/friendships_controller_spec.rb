@@ -5,12 +5,13 @@ describe 'Users API' , type: :api do
     @user = User.create(
       provider: 'twitter', username: 'BillyBob',
       image_url: 'http://...', image_thumbnail: 'http:..',
-      full_name: 'Bill Bob', uid: '12134', colour: 'blue')
+      full_name: 'Bill Bob', uid: '12134', colour: 'blue',
+      device_token: 'NONE')
     @friend = User.create(
       provider: 'twitter', username: 'Jimmy',
       image_url: 'http://...', image_thumbnail: 'http:..',
-      full_name: 'Bill Bob', uid: '92811',
-      colour: 'blue')
+      full_name: 'Billdsf Bob', uid: '92811',
+      colour: 'blue', device_token: 'NONE')
   end
 
   it 'should return a array of all friendships' do
@@ -25,7 +26,7 @@ describe 'Users API' , type: :api do
   end
 
   it 'should create a new friendship' do
-    post 'api/v1/friendships', friendship: { user_id: @user.id, friend_uid: @friend.id }
+    post 'api/v1/friendships', friendship: { user_id: @user.id, friend_id: @friend.id }
     response.status.should be(201)
   end
 
