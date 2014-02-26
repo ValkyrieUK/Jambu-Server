@@ -19,7 +19,7 @@ module Api
         attendee = User.find(attendee_params['user_id'])
         event = Event.find(attendee_params['event_id'])
         owner = User.find(event.user_id)
-        APNS.send_notification(attendee.device_token, "#{owner.full_name} invited you to #{event.title}!") unless friend.device_token == 'NONE'
+        APNS.send_notification(attendee.device_token, "#{owner.full_name} invited you to #{event.title}!") unless attendee.device_token == 'NONE'
       end
 
       def update
