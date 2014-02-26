@@ -16,6 +16,10 @@ module Api
 
       def create
         respond_with Attendee.new(attendee_params).save, location: nil
+        attendee = User.find(attendee_params['user_id'])
+        event = Event.find(attendee_params['event_id'])
+        owner = User.find(event.user_id)
+        APNS.send_notification(attendee.device_token, "#{owner.full_name} invited you to #{event.title}!") unless friend.device_token == 'NONE'
       end
 
       def update
