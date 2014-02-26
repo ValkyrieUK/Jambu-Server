@@ -2,10 +2,10 @@
 class User < ActiveRecord::Base
   after_create :track
 
-  has_many :activities
+  has_many :activities, dependent: :destroy
   has_many :activities, class_name: 'Activity', foreign_key: 'user_id'
-  has_many :events
-  has_many :friendships
+  has_many :events, dependent: :destroy
+  has_many :friendships, dependent: :destroy
   has_many :friends, through: :friendships
   has_many :inverse_friendships, class_name: 'Friendship', foreign_key: 'friend_id'
   has_many :inverse_friends, through: :inverse_friendships, source: :user

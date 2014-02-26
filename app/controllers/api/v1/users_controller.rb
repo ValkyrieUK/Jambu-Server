@@ -25,7 +25,7 @@ module Api
       end
 
       def create
-        user = User.find_or_create_by(user_params)
+        user = User.create(user_params)
         if user.save
           respond_with user, location: nil
         else
@@ -37,6 +37,7 @@ module Api
         user = User.find(params[:id])
         user.update(user_params)
         if user.save
+          Activity.create(user_id: user.id, action: 'user updated')
           respond_with user
         else
           render json: { errors: user.errors.full_messages }
@@ -44,7 +45,8 @@ module Api
       end
 
       def destroy
-        respond_with User.find_by(params[:uid]).destroy
+        user = User.find_by(params[:uid])
+        respond_with user.destroy
       end
 
       private

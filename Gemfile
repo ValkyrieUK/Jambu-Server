@@ -7,6 +7,7 @@ gem 'rails', '4.0.2'
 gem 'json'
 gem 'activeadmin', github: 'gregbell/active_admin'
 gem 'puma'
+gem 'apns'
 
 group :production do
   gem 'pg'
