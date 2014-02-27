@@ -15,7 +15,7 @@ describe 'Friendship API' , type: :api do
   end
 
   it 'should resquest a uid' do
-    get 'api/v1/friendships' 
+    get 'api/v1/friendships'
     response.status.should be(200)
   end
 

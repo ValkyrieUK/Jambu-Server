@@ -38,16 +38,18 @@ describe 'Attendee API' , type: :api do
     expect(json['attendees'].first['provider']).to eq(@friend.provider)
   end
 
-  xit 'should be able to update a attendee' do
+  it 'should be able to update a attendee' do
     @attendee.going?.should eq(false)
-    put "api/v1/attendees/#{@attendee.id}", attendee: { going?: true}
+    put "api/v1/attendees/#{@attendee.id}", attendee: { going?: true }
     response.status.should be(204)
     get "api/v1/attendees/#{@event.id}"
-    # puts response.body
+    Attendee.find(@attendee.id).going?.should be true
   end
 
-  xit 'should be able to destroy a attendee' do
-    delete "api/v1/attendees/#{}"
+  it 'should be able to destroy a attendee' do
+    delete "api/v1/attendees/#{@attendee.id}"
+    response.status.should be(204)
+    Attendee.count.should eq(0)
   end
 
 end
