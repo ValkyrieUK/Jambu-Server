@@ -1,6 +1,7 @@
 # Friends Class
 class Friendship < ActiveRecord::Base
   after_save :track
+  after_save :ios_notification
 
   belongs_to :user
   belongs_to :friend, class_name: 'User'
