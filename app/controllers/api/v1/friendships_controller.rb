@@ -17,7 +17,7 @@ module Api
       end
 
       def create
-        friendship = Friendship.create(friendship_params)
+        friendship = Friendship.new(friendship_params)
         friend = User.find(friendship_params['friend_id'])
         user = User.find(friendship_params['user_id'])
         if friendship.save
@@ -30,9 +30,11 @@ module Api
 
       def destroy
         friendship = Friendship.find(params[:id])
-        respond_with friendship.delete
-        Activity.where(user_id: friendship.user_id, friend_id: friendship.friend_id,
-          action: 'friend added').last.destroy
+        if friendship.delete
+          respond_with friendship
+          Activity.where(user_id: friendship.user_id, friend_id: friendship.friend_id,
+                         action: 'friend added').last.destroy
+        end
       end
 
       private

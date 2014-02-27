@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Users API' , type: :api do
+describe 'Events API' , type: :api do
 
   before(:each) do
     @event = Event.create(

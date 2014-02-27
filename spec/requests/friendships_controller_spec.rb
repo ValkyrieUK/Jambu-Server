@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Users API' , type: :api do
+describe 'Friendship API' , type: :api do
   before(:each) do
     @user = User.create(
       provider: 'twitter', username: 'BillyBob',

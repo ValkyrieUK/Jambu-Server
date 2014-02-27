@@ -10,7 +10,6 @@ module Api
         user = User.find_by_uid(params[:id])
         respond_with feed: user.activities.reverse.take(20)
       end
-
     end
-  end  
+  end
 end

@@ -36,8 +36,8 @@ module Api
       def destroy
         event = Event.find(params[:id])
         respond_with event.destroy
-         Activity.where(user_id: event.user_id, action: 'event created',
-          name: event.title).last.destroy
+        Activity.where(user_id: event.user_id, action: 'event created',
+                       name: event.title).last.destroy
       end
 
       def event_params

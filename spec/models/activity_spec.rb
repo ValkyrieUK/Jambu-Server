@@ -12,10 +12,10 @@ describe Activity do
       full_name: 'Bill Bob', uid: '928',
       colour: 'blue')
   end
-  
+
   it 'should be able to create a Activity' do
     Activity.create(user_id: 1, action: 'something', argument: 3)
-    Activity.count.should eq(3) #Because we are tracking user creation also
+    Activity.count.should eq(3) # Because we are tracking user creation also
   end
 
   it 'should be able to track Friendship creation' do

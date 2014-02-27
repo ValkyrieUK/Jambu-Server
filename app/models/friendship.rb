@@ -11,6 +11,7 @@ class Friendship < ActiveRecord::Base
   def track
     friend = User.find(friend_id)
     Activity.create(user_id: user_id, action: 'friend added',
-     name: friend.full_name, argument: friend.uid, friend_id: friend.id)
+                    name: friend.full_name, argument: friend.uid,
+                    friend_id: friend.id)
   end
 end

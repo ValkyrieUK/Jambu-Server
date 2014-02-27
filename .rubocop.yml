@@ -10,7 +10,7 @@ AllCops:
     - app/helpers/**
 
 LineLength:
-  Max: 120
+  Max: 180
 ClassLength:
   Max: 200
 MethodLength:
