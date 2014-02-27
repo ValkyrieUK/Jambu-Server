@@ -2,9 +2,13 @@ require 'spec_helper'
 
 describe Attendee do
   before(:each) do
+    @owner = User.create(
+      provider: 'twitter', username: 'Timmy',
+      image_url: 'http://...', image_thumbnail: 'http:..',
+      full_name: 'Tim Bob', uid: '19191', colour: 'blue')
     @event = Event.create(
       title: 'Pub', description: 'pub with the ladz',
-      user_id: 1, time_of_event: '1238219381')
+      user_id: @owner.id, time_of_event: '1238219381')
     @user = User.create(
       provider: 'twitter', username: 'BillyBob',
       image_url: 'http://...', image_thumbnail: 'http:..',

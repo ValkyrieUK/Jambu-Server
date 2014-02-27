@@ -1,7 +1,7 @@
 # Friends Class
 class Friendship < ActiveRecord::Base
+  after_create :ios_notification
   after_save :track
-  after_save :ios_notification
 
   belongs_to :user
   belongs_to :friend, class_name: 'User'
@@ -19,6 +19,7 @@ class Friendship < ActiveRecord::Base
   def ios_notification
     user = User.find(user_id)
     friend = User.find(friend_id)
-    APNS.send_notification(friend.device_token, "#{user.full_name} is now following you!") unless friend.device_token == 'NONE'
+    return if friend.device_token == 'NONE' || friend.device_token == nil
+    APNS.send_notification(friend.device_token, "#{user.full_name} is now following you!")
   end
 end

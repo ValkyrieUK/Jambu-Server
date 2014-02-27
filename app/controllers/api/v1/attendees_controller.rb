@@ -15,15 +15,11 @@ module Api
       end
 
       def create
-        new_attendee = Attendee.new(attendee_params)
-        attendee = User.find(attendee_params['user_id'])
-        event = Event.find(attendee_params['event_id'])
-        owner = User.find(event.user_id)
-        if new_attendee.save
-          respond_with new_attendee, location: nil
-          APNS.send_notification(attendee.device_token, "#{owner.full_name} invited you to #{event.title}!") unless attendee.device_token == 'NONE'
+        attendee = Attendee.new(attendee_params)
+        if attendee.save
+          respond_with attendee, location: nil
         else
-          render json: { errors: new_attendee.errors.full_messages }
+          render json: { errors: attendee.errors.full_messages }
         end
       end
 
