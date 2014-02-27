@@ -15,6 +15,7 @@ describe Attendee do
     @attending_user = Attendee.create(
       event_id: "#{@event.id}", user_id: "#{@user.id}")
     @event.save.should be true
+    Attendee.count.should eq(1)
   end
 
   it 'should not create dupliacte attendees' do

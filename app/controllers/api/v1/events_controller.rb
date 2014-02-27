@@ -11,7 +11,7 @@ module Api
       end
 
       def show
-        respond_with User.find(params[:id]).events
+        respond_with Event.find(params[:id])
       end
 
       def create
@@ -24,7 +24,7 @@ module Api
       end
 
       def update
-        event = event.find([:id])
+        event = Event.find(params[:id])
         event.update(event_params)
         if event.save
           respond_with event

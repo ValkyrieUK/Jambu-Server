@@ -14,8 +14,8 @@ describe 'Friendship API' , type: :api do
       colour: 'blue', device_token: 'NONE')
   end
 
-  it 'should return a array of all friendships' do
-    get 'api/v1/friendships'
+  it 'should resquest a uid' do
+    get 'api/v1/friendships' 
     response.status.should be(200)
   end
 

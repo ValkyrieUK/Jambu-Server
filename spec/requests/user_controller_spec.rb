@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'Users API' , type: :api do
 
-  it 'should return a array of users' do
+  it 'should resquest a uid' do
     get '/api/v1/users'
     response.status.should be(200)
   end
@@ -10,13 +10,13 @@ describe 'Users API' , type: :api do
   it 'should return a valid user with the correct details' do
     user = FactoryGirl.create(:user)
     get "api/v1/users/#{user.uid}"
+    response.status.should be(200)
     expect(response).to be_success
     expect(json['user']['uid']).to eq(user.uid)
     expect(json['user']['username']).to eq(user.username)
     expect(json['user']['full_name']).to eq(user.full_name)
     expect(json['user']['image_url']).to eq(user.image_url)
     expect(json['user']['provider']).to eq(user.provider)
-    response.status.should be(200)
     User.count.should be 1
   end
 

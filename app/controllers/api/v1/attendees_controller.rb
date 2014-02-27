@@ -11,7 +11,7 @@ module Api
       end
 
       def show
-        respond_with attendees: Event.find(parmas[:id]).attending_users
+        respond_with attendees: Event.find(params[:id]).attending_users
       end
 
       def create
@@ -28,16 +28,16 @@ module Api
       end
 
       def update
-        attendee = Attendee.find([:id])
+        attendee = Attendee.find(params[:id])
         respond_with attendee.update(attendee_params)
       end
 
       def destroy
-        respond_with Attendee.find([:id]).destroy
+        respond_with Attendee.find(params[:id]).destroy
       end
 
       def attendee_params
-        params.require(:attendee).permit(:event_id, :user_id, :time_of_event)
+        params.require(:attendee).permit(:event_id, :user_id, :time_of_event, :going?)
       end
     end
   end

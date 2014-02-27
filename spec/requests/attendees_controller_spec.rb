@@ -21,17 +21,33 @@ describe 'Attendee API' , type: :api do
   end
 
   it 'should be able to create a attendee to a event' do
-    Attendee.create(event_id: @event.id, user_id: @friend.id, going?: false)
+    post 'api/v1/attendees', attendee: {
+      event_id: @event.id, user_id: @friend.id, going?: false }
     Attendee.count.should eq(1)
   end
 
-  it 'should not be able to find attendees that are not going to events' do
-    @event.attendees.where(going?: false).count.should eq(1)
+  it 'should not be able to find attendees that are going to events' do
+    get "api/v1/attendees/#{@event.id}"
+    response.status.should be(200)
+    expect(response).to be_success
+    expect(json['attendees'].first['uid']).to eq(@friend.uid)
+    expect(json['attendees'].first['username']).to eq(@friend.username)
+    expect(json['attendees'].first['username']).to eq(@friend.username)
+    expect(json['attendees'].first['full_name']).to eq(@friend.full_name)
+    expect(json['attendees'].first['image_url']).to eq(@friend.image_url)
+    expect(json['attendees'].first['provider']).to eq(@friend.provider)
   end
 
-  it 'should be able to change a users going status to true' do
-    @attendee.update(going?: true)
-    @attendee.save.should be true
+  xit 'should be able to update a attendee' do
+    @attendee.going?.should eq(false)
+    put "api/v1/attendees/#{@attendee.id}", attendee: { going?: true}
+    response.status.should be(204)
+    get "api/v1/attendees/#{@event.id}"
+    # puts response.body
+  end
+
+  xit 'should be able to destroy a attendee' do
+    delete "api/v1/attendees/#{}"
   end
 
 end
