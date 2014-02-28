@@ -10,6 +10,6 @@
   <p><%= label_tag 'Message to send to user' %></p>
   <%= text_field_tag :message, params[:message] %>
   <p><%= label_tag 'Device Token' %></p>
-<%= select_tag 'token', options_from_collection_for_select(User.all.each, 'device_token', 'username"'), include_blank: 'All People' %>
+<%= select_tag 'token', options_from_collection_for_select(User.all.each, 'device_token', 'username'), include_blank: 'All People' %>
   <%= submit_tag("Send") %>
 <% end %>
