@@ -17,12 +17,12 @@ describe APNS::Notification do
 
     it 'should return JSON with notification information' do
       n = APNS::Notification.new('device_token', alert: 'Hello iPhone', badge: 3, sound: 'awesome.caf')
-      n.packaged_message.should  == "{ \"aps\":{ \"alert\":\"Hello iPhone\",\"badge\":3,\"sound\":\"awesome.caf\" } }"
+      n.packaged_message.should  == "{\"aps\":{\"alert\":\"Hello iPhone\",\"badge\":3,\"sound\":\"awesome.caf\"}}"
     end
 
     it 'should not include keys that are empty in the JSON' do
       n = APNS::Notification.new('device_token', badge: 3)
-      n.packaged_message.should == "{ \"aps\":{ \"badge\":3 } }"
+      n.packaged_message.should == "{\"aps\":{\"badge\":3}}"
     end
   end
 
