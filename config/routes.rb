@@ -14,4 +14,5 @@ Server::Application.routes.draw do
       get 'users/:uid', to: 'users#show'
     end
   end
+  post '/admin/notifications',to: 'admin/notifications#notify'
 end

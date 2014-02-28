@@ -61,9 +61,9 @@ ActiveRecord::Schema.define(version: 20140226203755) do
 
   create_table "attendees", force: true do |t|
     t.integer  "event_id"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_id"
     t.boolean  "going?"
   end
 
@@ -77,10 +77,10 @@ ActiveRecord::Schema.define(version: 20140226203755) do
   end
 
   create_table "friendships", force: true do |t|
-    t.integer  "user_id"
-    t.integer  "friend_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
+    t.integer  "friend_id"
   end
 
   create_table "users", force: true do |t|

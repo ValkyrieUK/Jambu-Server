@@ -1,0 +1,5 @@
+<%= form_tag admin_notifications_path, method: 'post' do %>
+  <%= label_tag 'Message to send' %>  
+  <%= text_field_tag :message, params[:message] %>
+  <%= submit_tag("Search") %>
+<% end %>
