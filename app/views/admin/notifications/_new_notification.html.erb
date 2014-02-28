@@ -1,5 +1,15 @@
 <%= form_tag admin_notifications_path, method: 'post' do %>
-  <%= label_tag 'Message to send' %>  
+  <p><%= label_tag 'Message to send to all users' %> </p> 
   <%= text_field_tag :message, params[:message] %>
-  <%= submit_tag("Search") %>
+  <%= submit_tag("Send") %>
+<% end %>
+<br>
+<br>
+<br>
+<%= form_tag admin_notifications_path, method: 'post' do %>
+  <p><%= label_tag 'Message to send to user' %></p>
+  <%= text_field_tag :message, params[:message] %>
+  <p><%= label_tag 'Device Token' %></p>
+  <%= text_field_tag :token, params[:token] %>
+  <%= submit_tag("Send") %>
 <% end %>

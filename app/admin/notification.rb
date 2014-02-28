@@ -4,8 +4,14 @@
 
       def notify
         message = params[:message]
-        User.all.each do |i|
-          APNS.send_notification(i.device_token, message) unless i.device_token == 'NONE' || i.device_token.nil?
+        token = params[:token]
+        puts token.inspect
+        if token.nil?
+          User.all.each do |i|
+            APNS.send_notification(i.device_token, message) unless i.device_token == 'NONE' || i.device_token.nil?
+          end
+        else
+          APNS.send_notification(token, message)
         end
         redirect_to root_path
       end
