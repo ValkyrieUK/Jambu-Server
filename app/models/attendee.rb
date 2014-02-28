@@ -12,8 +12,7 @@ class Attendee < ActiveRecord::Base
     attendee = User.find(user_id)
     event = Event.find(event_id)
     owner = User.find(event.user_id)
-    return if attendee.device_token == 'NONE' || attendee.device_token.nil?
-    APNS.send_notification(attendee.device_token, "#{owner.full_name} invited you to #{event.title}!")
+    APNS.send_notification(attendee.device_token, "#{owner.full_name} invited you to #{event.title}!") unless attendee.device_token == 'NONE' || attendee.device_token.nil?
   end
 
   def track
