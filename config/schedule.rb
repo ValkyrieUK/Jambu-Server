@@ -19,6 +19,21 @@
 
 # Learn more: http://github.com/javan/whenever
 # set :output, {:error => "log/cron_error_log.log", :standard => "log/cron_log.log"}
-every 1.minutes do
-  rake "apns:push"
+
+def check
+  puts Time.now.to_i
+  now = (Time.now.to_i - 60).to_s
+  if Event.where(['time_of_event < ?', now])
+    sleep 1
+    event = Event.where(['time_of_event < ?', now]).each
+    Event.where(['time_of_event < ?', now]).each do |e|
+      e.update(time_of_event: 'in progress or over')
+      e.attending_users.each do |i|
+        APNS.send_notification(device_token, "PUSH!") unless device_token == 'NONE' || device_token.nil?
+        sleep 1 
+        end
+      end
+    end
+  end
 end
+loop do check end
