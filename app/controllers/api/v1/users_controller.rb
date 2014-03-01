@@ -12,7 +12,7 @@ module Api
 
       def show
         user = User.find_by_uid(params[:uid])
-        friend_user_id = params[:requestor]
+        friend_user_id = User.find_by_uid(params[:requestor]).id
         friendship_id = Friendship.where(user_id: friend_user_id, friend_id: user.id).last.id
         user_hash = {
           user: user,
