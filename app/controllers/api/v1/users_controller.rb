@@ -35,6 +35,7 @@ module Api
               events_attended: Event.joins(:attending_users).merge(Attendee.where(user_id: user.id, going?: true)).count,
               event_invites_pending: 0 }
           }
+        end
         respond_with user_hash
       end
 
