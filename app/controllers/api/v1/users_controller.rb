@@ -12,6 +12,8 @@ module Api
 
       def show
         user = User.find_by_uid(params[:uid])
+        friend_user_id = params[:requestor]
+        friend_id = Friendship.where(user_id: friend_user_id, friend_id: user.id).last.id
         user_hash = {
           user: user,
           counts: {
@@ -19,7 +21,8 @@ module Api
             added_as_friend: User.joins(:friendships).merge(Friendship.where(friend_id: user.id)).count,
             events_created: user.events.count,
             events_attended: Event.joins(:attending_users).merge(Attendee.where(user_id: user.id, going?: true)).count,
-            event_invites_pending: 0 }
+            event_invites_pending: 0 },
+            friend_id: friend_id
         }
         respond_with user_hash
       end
