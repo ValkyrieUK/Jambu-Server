@@ -13,8 +13,8 @@ module Api
       def show
         user = User.find_by_uid(params[:uid])
         friend_user_id = User.find_by_uid(params[:requestor]).id if params[:requestor]
-        if friend_user_id
-          friendship_id = Friendship.where(user_id: friend_user_id, friend_id: user.id).last.id
+        friendship_id = Friendship.where(user_id: friend_user_id, friend_id: user.id)
+        if friendship_id.any? && friend_user_id
           user_hash = {
             user: user,
             counts: {
