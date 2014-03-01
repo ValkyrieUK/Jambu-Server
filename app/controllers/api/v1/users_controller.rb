@@ -13,17 +13,28 @@ module Api
       def show
         user = User.find_by_uid(params[:uid])
         friend_user_id = User.find_by_uid(params[:requestor]).id
-        friendship_id = Friendship.where(user_id: friend_user_id, friend_id: user.id).last.id
-        user_hash = {
-          user: user,
-          counts: {
-            friends: user.friends.count ,
-            added_as_friend: User.joins(:friendships).merge(Friendship.where(friend_id: user.id)).count,
-            events_created: user.events.count,
-            events_attended: Event.joins(:attending_users).merge(Attendee.where(user_id: user.id, going?: true)).count,
-            event_invites_pending: 0 },
-            friend_id: friendship_id
-        }
+        if friend_user_id
+          friendship_id = Friendship.where(user_id: friend_user_id, friend_id: user.id).last.id
+          user_hash = {
+            user: user,
+            counts: {
+              friends: user.friends.count ,
+              added_as_friend: User.joins(:friendships).merge(Friendship.where(friend_id: user.id)).count,
+              events_created: user.events.count,
+              events_attended: Event.joins(:attending_users).merge(Attendee.where(user_id: user.id, going?: true)).count,
+              event_invites_pending: 0 },
+              friend_id: friendship_id
+          }
+        else
+          user_hash = {
+            user: user,
+            counts: {
+              friends: user.friends.count ,
+              added_as_friend: User.joins(:friendships).merge(Friendship.where(friend_id: user.id)).count,
+              events_created: user.events.count,
+              events_attended: Event.joins(:attending_users).merge(Attendee.where(user_id: user.id, going?: true)).count,
+              event_invites_pending: 0 }
+          }
         respond_with user_hash
       end
 
