@@ -8,6 +8,8 @@ gem 'json'
 gem 'activeadmin', github: 'gregbell/active_admin'
 gem 'puma'
 gem 'apns'
+gem 'rufus-scheduler'
+
 
 group :production do
   gem 'pg'
