@@ -1,5 +1,5 @@
 scheduler = Rufus::Scheduler.new
-scheduler.every '1s' do
+scheduler.every '3s' do
   now = (Time.now.to_i + 60).to_s
   puts Time.now.to_i
   if Event.where(['time_of_event < ?', now])
