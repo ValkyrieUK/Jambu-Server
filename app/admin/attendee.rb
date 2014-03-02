@@ -1,5 +1,5 @@
 ActiveAdmin.register Attendee do
-  permit_params :event_id, :user_id
+  permit_params :event_id, :user_id, :going?
 
   index do
     selectable_column
