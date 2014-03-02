@@ -1,4 +1,4 @@
-include ActionView::Helpers::DateHelper
+# include ActionView::Helpers::DateHelper
 Thread.new do
   while true do
     puts Time.now.to_i
@@ -14,6 +14,6 @@ Thread.new do
         e.update(time_of_event: 'in progress or over')
       end
     end
-    sleep 30
+    sleep 15
   end
 end
