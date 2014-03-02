@@ -1,6 +1,5 @@
-namespace :apns do
-  desc 'check events occuring soon'
-  task :push => :environment do
+Thread.new do
+  while true do
     puts Time.now.to_i
     now = (Time.now.to_i - 60).to_s
     if Event.where(['time_of_event < ?', now])
@@ -13,5 +12,6 @@ namespace :apns do
         end
       end
     end
+    sleep 20
   end
 end
