@@ -14,6 +14,6 @@ Thread.new do
         e.update(time_of_event: 'in progress or over')
       end
     end
-    sleep 1
+    sleep 30
   end
 end
