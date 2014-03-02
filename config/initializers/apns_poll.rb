@@ -1,3 +1,4 @@
+include ActionView::Helpers::DateHelper
 Thread.new do
   while true do
     puts Time.now.to_i
