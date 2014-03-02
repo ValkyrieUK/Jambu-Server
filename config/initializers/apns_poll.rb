@@ -6,8 +6,9 @@ Thread.new do
     if Event.where(['time_of_event < ?', now])
       event = Event.where(['time_of_event < ?', now]).each
       Event.where(['time_of_event < ?', now]).each do |e|
+        time_until = distance_of_time_in_words(now.to_i, e.time_of_event.to_i)
         e.attending_users.each do |i|
-          APNS.send_notification(i.device_token, "#{e.title} will be starting in #{distance_of_time_in_words(now, e.time_of_event)}!") unless i.device_token == 'NONE' || i.device_token.nil?
+          APNS.send_notification(i.device_token, "#{e.title} will be starting in #{time_until}!") unless i.device_token == 'NONE' || i.device_token.nil?
           sleep 1 
         end
         e.update(time_of_event: 'in progress or over')
