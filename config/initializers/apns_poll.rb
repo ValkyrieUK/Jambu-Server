@@ -7,7 +7,7 @@ Thread.new do
       Event.where(['time_of_event < ?', now]).each do |e|
         e.update(time_of_event: 'in progress or over')
         e.attending_users.each do |i|
-        APNS.send_notification(i.device_token, "PUSH!") unless i.device_token == 'NONE' || i.device_token.nil?
+        APNS.send_notification(i.device_token, "#{e.title} will be starting soon!") unless i.device_token == 'NONE' || i.device_token.nil?
           sleep 1 
         end
       end
