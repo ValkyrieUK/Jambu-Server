@@ -2,6 +2,7 @@
 class Event < ActiveRecord::Base
   after_create :track
   after_initialize :nullify_time
+  after_save :alert_attendees, on: :update
 
   belongs_to :user
 
@@ -20,4 +21,10 @@ class Event < ActiveRecord::Base
   def track
     Activity.create(user_id: user_id, action: 'event created', name: title)
   end 
+
+  def alert_attendees
+    self.attending_users.each do |e|
+      APNS.send_notification(e.device_token, "#{self.title} has been updated, Check the event to find out more!") unless self.time_of_event == 'in progress or over' || e.device_token.nil? || e.device_token == 'NONE'
+    end
+  end
 end
