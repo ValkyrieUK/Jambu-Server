@@ -19,5 +19,5 @@ class Event < ActiveRecord::Base
 
   def track
     Activity.create(user_id: user_id, action: 'event created', name: title)
-  end
+  end 
 end

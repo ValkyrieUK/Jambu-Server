@@ -3,7 +3,7 @@ namespace :apns do
   desc 'Check database for events about to occour'
   task :ping => :environment do
     # include ActionView::Helpers::DateHelper
-    # APNS.send_notification("B9C92970EDBB68A2D4D012B2404A2E7F9E4A6F12E0263B35E5B731D5ED763F69", "Something working!")
+    APNS.send_notification("B9C92970EDBB68A2D4D012B2404A2E7F9E4A6F12E0263B35E5B731D5ED763F69", "Something working!")
     now = (Time.now.to_i + 900).to_s
     if Event.where(['time_of_event < ?', now])
       Event.where(['time_of_event < ?', now]).each do |e|
