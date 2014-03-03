@@ -8,7 +8,6 @@ gem 'json'
 gem 'activeadmin', github: 'gregbell/active_admin'
 gem 'puma'
 gem 'apns'
-gem 'whenever', require: false
 
 
 group :production do
