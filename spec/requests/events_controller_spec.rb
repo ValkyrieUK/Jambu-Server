@@ -37,6 +37,6 @@ describe 'Events API' , type: :api do
   it 'should be able to cancel events via the api' do
     put "api/v1/events/#{@event.id}", event: { canceled?: true}
     response.status.should be(204)
-    Event.find(@event.id).canceled?.should eq(true)
+    Event.find(@event.id).canceled?.should eq('true')
   end
 end
