@@ -23,5 +23,4 @@ group :test, :development do
   gem 'faker'
   gem 'brakeman'
   gem 'database_cleaner'
-  gem 'rails-erd'
 end
