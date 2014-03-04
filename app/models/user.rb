@@ -2,6 +2,8 @@
 class User < ActiveRecord::Base
   after_create :track
 
+  has_many :device_tokens, dependent: :destroy
+  has_many :device_tokens, class_name: 'DeviceToken', foreign_key: 'user_id'
   has_many :activities, dependent: :destroy
   has_many :activities, class_name: 'Activity', foreign_key: 'user_id'
   has_many :events, dependent: :destroy
