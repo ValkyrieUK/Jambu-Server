@@ -23,7 +23,7 @@ module Api
             added_as_friend: User.joins(:friendships).merge(Friendship.where(friend_id: user.id)).count,
             events_created: user.events.count,
             events_attended: Event.joins(:attending_users).merge(Attendee.where(user_id: user.id, going?: true)).count,
-            event_invites_pending: 0 },
+            event_invites_pending: Attendee.where(user_id: user.id, going?: nil).count },
         }
         if friendship_id.any? && friend_user_id
           user_hash.merge!(friend_id: friendship_id.last.id)
