@@ -20,7 +20,7 @@ module Api
           user: user,
           counts: {
             friends: user.friends.count ,
-            added_as_friend: User.joins(:friendships).merge(Friendship.where(friend_id: user.id)).count,
+            added_as_friend: user.inverse_friendships.count,
             events_created: user.events.count,
             events_attended: Event.joins(:attending_users).merge(Attendee.where(user_id: user.id, going?: true)).count,
             event_invites_pending: Attendee.where(user_id: user.id, going?: nil).count },
@@ -37,7 +37,6 @@ module Api
         user = User.new(user_params)
         if user.save
           respond_with user, location: nil
-          user.add_token(user.id, user.device_token, 'ios')
         else
           render json: { errors: user.errors.full_messages }
         end

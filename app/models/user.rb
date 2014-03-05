@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
 
   validates :provider, :uid, :username, :image_url, :image_thumbnail, :full_name, :colour, presence: true
   validates :uid, uniqueness: true
+  validates :device_token, uniqueness: true, unless: :none? , allow_nil: true
   validates :provider, format: /\A(twitter)\Z/
   validates :username, :full_name, :colour, length: { maximum: 35 }
 
@@ -21,11 +22,11 @@ class User < ActiveRecord::Base
     where('username iLIKE ? or full_name iLIKE ?', "%#{search}%", "%#{search}%") if search
   end
 
-  def track
-    Activity.create(user_id: id, action: 'user created')
+  def none?
+    device_token == 'NONE'
   end
 
-  def self.add_token(user_id, token, os)
-    DeviceToken.create(user_id: "#{user_id}", token: "#{token}", os: "#{os}")
+  def track
+    Activity.create(user_id: id, action: 'user created')
   end
 end

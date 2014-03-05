@@ -6,6 +6,7 @@ Server::Application.routes.draw do
     namespace :v1 do
       resources :feed
       resources :search
+      resources :device_tokens
       resources :followers
       resources :attendees
       resources :friendships
