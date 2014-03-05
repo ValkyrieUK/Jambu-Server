@@ -37,6 +37,7 @@ module Api
         user = User.new(user_params)
         if user.save
           respond_with user, location: nil
+          user.add_token(user.id, user.device_token, 'ios')
         else
           render json: { errors: user.errors.full_messages }
         end

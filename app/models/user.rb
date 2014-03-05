@@ -24,4 +24,8 @@ class User < ActiveRecord::Base
   def track
     Activity.create(user_id: id, action: 'user created')
   end
+
+  def self.add_token(user_id, token, os)
+    DeviceToken.create(user_id: "#{user_id}", token: "#{token}", os: "#{os}")
+  end
 end
