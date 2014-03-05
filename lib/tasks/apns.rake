@@ -9,7 +9,9 @@ namespace :apns do
         time_until = distance_of_time_in_words(now.to_i, e.time_of_event.to_i)
         e.attendees.each do |i|
           user = User.find(i.user_id)
-          APNS.send_notification(user.device_token, "#{e.title} will begin in #{time_until}!") unless user.device_token == 'NONE' || user.device_token.nil? || i.going? == false
+          user.device_tokens.each do |p|
+            APNS.send_notification(p.token, "#{e.title} will begin in #{time_until}!") unless p.token == 'NONE' || p.token.nil? || i.going? == false
+          end
         end
         e.update(time_of_event: 'in progress or over')
       end

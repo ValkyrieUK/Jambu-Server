@@ -19,6 +19,8 @@ class Friendship < ActiveRecord::Base
   def ios_notification
     user = User.find(user_id)
     friend = User.find(friend_id)
-    APNS.send_notification(friend.device_token, "#{user.full_name} is now following you!") unless friend.device_token == 'NONE' || friend.device_token.nil?
+    friend.device_tokens.each do |e|
+      APNS.send_notification(e.token, "#{user.full_name} is now following you!") unless e.token == 'NONE' || e.token.nil?
+    end
   end
 end

@@ -20,11 +20,13 @@ class Event < ActiveRecord::Base
 
   def track
     Activity.create(user_id: user_id, action: 'event created', name: title)
-  end 
+  end
 
   def alert_attendees
     self.attending_users.each do |e|
-      APNS.send_notification(e.device_token, "#{self.title} has been updated, Check the event to find out more!") unless self.time_of_event == 'in progress or over' || e.device_token.nil? || e.device_token == 'NONE'
+      e.device_tokens.each do |i|
+        APNS.send_notification(i.token, "#{self.title} has been updated, Check the event to find out more!") unless self.time_of_event == 'in progress or over' || i.token.nil? || i.token == 'NONE'
+      end
     end
   end
 end
