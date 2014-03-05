@@ -10,7 +10,7 @@ namespace :apns do
         e.attendees.each do |i|
           user = User.find(i.user_id)
           user.device_tokens.each do |p|
-            APNS.send_notification(p.token, "#{e.title} will begin in #{time_until}!") unless p.token == 'NONE' || p.token.nil? || i.going? == false
+            APNS.send_notification(p.token, "#{e.title} will begin in #{time_until}!") unless p.token == 'NONE' || p.token.nil? || p.os == 'android' || i.going? == false
           end
         end
         e.update(time_of_event: 'in progress or over')

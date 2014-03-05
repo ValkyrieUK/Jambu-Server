@@ -20,7 +20,7 @@ class Friendship < ActiveRecord::Base
     user = User.find(user_id)
     friend = User.find(friend_id)
     friend.device_tokens.each do |e|
-      APNS.send_notification(e.token, "#{user.full_name} is now following you!") unless e.token == 'NONE' || e.token.nil?
+      APNS.send_notification(e.token, "#{user.full_name} is now following you!") unless e.token == 'NONE' || e.token.nil? || e.os == 'android'
     end
   end
 end

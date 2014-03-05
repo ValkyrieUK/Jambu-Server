@@ -13,7 +13,7 @@ class Attendee < ActiveRecord::Base
     event = Event.find(event_id)
     owner = User.find(event.user_id)
     attendee.device_tokens.each do |e|
-      APNS.send_notification(e.token, "#{owner.full_name} invited you to #{event.title}!") unless e.token == 'NONE' || e.token.nil?
+      APNS.send_notification(e.token, "#{owner.full_name} invited you to #{event.title}!") unless e.token == 'NONE' || e.token.nil? || e.os == 'android'
     end
   end
 
