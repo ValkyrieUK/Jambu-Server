@@ -23,9 +23,11 @@ class Event < ActiveRecord::Base
   end
 
   def alert_attendees
-    self.attending_users.each do |e|
+    attending_users.each do |e|
       e.device_tokens.each do |i|
-        APNS.send_notification(i.token, "#{self.title} has been updated, Check the event to find out more!") unless self.time_of_event == 'in progress or over' || i.token.nil? || i.token == 'NONE' || i.os == 'android'
+        APNS.send_notification(
+        i.token, "#{title} has been updated, Check the event to find out more!"
+        ) unless self.time_of_event == 'in progress or over' || i.token.nil? || i.token == 'NONE' || i.os == 'android'
       end
     end
   end
