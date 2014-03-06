@@ -14,7 +14,6 @@ class User < ActiveRecord::Base
 
   validates :provider, :uid, :username, :image_url, :image_thumbnail, :full_name, :colour, presence: true
   validates :uid, uniqueness: true
-  validates :device_token, uniqueness: true, unless: :none? , allow_nil: true
   validates :provider, format: /\A(twitter)\Z/
   validates :username, :full_name, :colour, length: { maximum: 35 }
 

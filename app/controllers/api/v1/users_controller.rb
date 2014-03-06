@@ -62,8 +62,7 @@ module Api
 
       def user_params
         params.require(:user).permit(:username, :uid, :provider, :image_url,
-                                     :image_thumbnail, :full_name, :colour,
-                                     :device_token)
+                                     :image_thumbnail, :full_name, :colour)
       end
     end
   end
