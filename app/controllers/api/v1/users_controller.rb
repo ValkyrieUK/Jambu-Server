@@ -12,7 +12,7 @@ module Api
 
       def show
         user = User.find_by_uid(params[:uid])
-        render json: { error: 'User does not exist!'} if user.nil?
+        render json: { error: 'User does not exist!' } if user.nil?
         return if user.nil?
         friend_user_id = User.find_by_uid(params[:requestor]).id if params[:requestor]
         friendship_id = Friendship.where(user_id: friend_user_id, friend_id: user.id)
@@ -23,7 +23,7 @@ module Api
             added_as_friend: user.inverse_friendships.count,
             events_created: user.events.count,
             events_attended: Event.joins(:attending_users).merge(Attendee.where(user_id: user.id, going?: true)).count,
-            event_invites_pending: Attendee.where(user_id: user.id, going?: nil).count },
+            event_invites_pending: Attendee.where(user_id: user.id, going?: nil).count }
         }
         if friendship_id.any? && friend_user_id
           user_hash.merge!(friend_id: friendship_id.last.id)
