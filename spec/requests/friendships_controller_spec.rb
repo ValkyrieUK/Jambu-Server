@@ -26,7 +26,7 @@ describe 'Friendship API' , type: :api do
 
   it 'should create a new friendship' do
     post 'api/v1/friendships', friendship: { user_id: @user.id, friend_id: @friend.id }
-    response.status.should be(201)
+    response.status.should be(200)
   end
 
   it 'should be able to delte a friendship' do

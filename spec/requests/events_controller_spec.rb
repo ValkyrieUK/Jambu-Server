@@ -21,7 +21,7 @@ describe 'Events API' , type: :api do
     post 'api/v1/events', event: {
       title: 'Pub', description: 'pub with the ladz',
       user_id: 1, time_of_event: '1238219381' }
-    response.status.should be(201)
+    response.status.should be(200)
     Event.count.should be 1
   end
 
