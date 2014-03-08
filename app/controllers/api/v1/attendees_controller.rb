@@ -17,7 +17,7 @@ module Api
       def create
         attendee = Attendee.new(attendee_params)
         if attendee.save
-          respond_with attendee, location: nil
+          render json: { success: true }
         else
           render json: { errors: attendee.errors.full_messages }
         end

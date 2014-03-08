@@ -19,7 +19,7 @@ module Api
       def create
         friendship = Friendship.new(friendship_params)
         if friendship.save
-          respond_with friendship, location: nil
+          render json: { success: true }
         else
           render json: { errors: friendship.errors.full_messages }
         end

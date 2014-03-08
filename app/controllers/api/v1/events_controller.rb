@@ -17,7 +17,7 @@ module Api
       def create
         event = Event.new(event_params)
         if event.save
-          respond_with event, location: nil
+          render json: { success: true }
         else
           render json: { errors: event.errors.full_messages }
         end

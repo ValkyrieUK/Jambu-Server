@@ -9,7 +9,7 @@ module Api
       def create
         token = DeviceToken.new(token_params)
         if token.save
-          respond_with token, location: nil
+          render json: { success: true }
         else
           render json: { errors: token.errors.full_messages }
         end
