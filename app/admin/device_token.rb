@@ -3,7 +3,7 @@ ActiveAdmin.register DeviceToken do
 
   index do
     selectable_column
-    column :user_id
+    column :user
     column :os
     default_actions
   end

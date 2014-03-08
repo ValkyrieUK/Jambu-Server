@@ -4,15 +4,19 @@
 
       def notify
         message = params[:message]
-        token = params[:token]
-        if token.nil?
+        id = params[:id]
+        if id.nil?
           User.all.each do |i|
-            APNS.send_notification(i.device_token, message) unless i.device_token == 'NONE' || i.device_token.nil?
+            i.device_tokens.each do |e|
+              APNS.send_notification(e.token, message) unless e.token == 'NONE' || e.token.nil?
+            end
           end
         else
-          APNS.send_notification(token, message)
+          User.find(id).device_tokens.each do |i|
+            APNS.send_notification(i.token, message)
+          end
         end
-        redirect_to root_path
+        redirect_to admin_notifications_path
       end
 
     end
