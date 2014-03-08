@@ -5,13 +5,12 @@ describe Friendship do
     @user = User.create(
       provider: 'twitter', username: 'BillyBob',
       image_url: 'http://...', image_thumbnail: 'http:..',
-      full_name: 'Bill Bob', uid: '1234', colour: 'blue',
-      device_token: 'NONE')
+      full_name: 'Bill Bob', uid: '1234', colour: 'blue')
     @friend = User.create(
       provider: 'twitter', username: 'Jimmy',
       image_url: 'http://...', image_thumbnail: 'http:..',
       full_name: 'Bill Bob', uid: '928',
-      colour: 'blue', device_token: 'NONE')
+      colour: 'blue')
   end
 
   it 'should create a friendship' do
