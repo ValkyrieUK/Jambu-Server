@@ -6,7 +6,7 @@ Server::Application.routes.draw do
     namespace :v1 do
       resources :feed
       resources :search
-      post 'device_tokens', to: 'device_tokens#create'
+      resources :device_tokens
       resources :followers
       resources :attendees
       resources :friendships
