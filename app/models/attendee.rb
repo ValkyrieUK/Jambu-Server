@@ -1,6 +1,6 @@
 # Attendee Model
 class Attendee < ActiveRecord::Base
-  after_create :ios_notification
+  after_create :notification
   after_save :track
 
   belongs_to :user
@@ -8,12 +8,17 @@ class Attendee < ActiveRecord::Base
   validates :event_id, :user_id, presence: true
   validates :event_id, uniqueness: { scope: :user_id }
 
-  def ios_notification
+  def notification
     attendee = User.find(user_id)
     event = Event.find(event_id)
     owner = User.find(event.user_id)
     attendee.device_tokens.each do |e|
-      APNS.send_notification(e.token, "#{owner.full_name} invited you to #{event.title}!") unless e.token == 'NONE' || e.token.nil? || e.os == 'android'
+      if e.os == 'iOS'
+        APNS.send_notification(e.token, "#{owner.full_name} invited you to #{event.title}!") unless e.token == 'NONE' || e.token.nil?
+      else
+        message = { data: { message: "#{owner.full_name} invited you to #{event.title}!"} }
+        gcm.send_notification(i.token, message) unless e.token == 'NONE' || e.token.nil?
+      end
     end
   end
 
