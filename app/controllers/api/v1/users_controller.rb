@@ -36,7 +36,7 @@ module Api
       def create
         user = User.new(user_params)
         if user.save
-          respond_with user, location: nil
+          render json: { sucess: true }
         else
           render json: { errors: user.errors.full_messages }
         end
