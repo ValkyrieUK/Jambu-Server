@@ -6,8 +6,7 @@ describe 'Attendee API' , type: :api do
     @user = User.create(
       provider: 'twitter', username: 'BillyBob',
       image_url: 'http://...', image_thumbnail: 'http:..',
-      full_name: 'Bill Bob', uid: '12134', colour: 'blue',
-      device_token: 'NONE')
+      full_name: 'Bill Bob', uid: '12134', colour: 'blue')
     @event = Event.create(
       title: 'Pub', description: 'pub with the ladz',
       user_id: @user.id, time_of_event: '1238219381')
@@ -15,7 +14,7 @@ describe 'Attendee API' , type: :api do
       provider: 'twitter', username: 'Jimmy',
       image_url: 'http://...', image_thumbnail: 'http:..',
       full_name: 'Billdsf Bob', uid: '92811',
-      colour: 'blue', device_token: 'NONE')
+      colour: 'blue')
     @attendee = Attendee.create(
       event_id: @event.id, user_id: @friend.id, going?: false)
   end

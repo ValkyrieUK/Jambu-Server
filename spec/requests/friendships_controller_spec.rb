@@ -5,13 +5,12 @@ describe 'Friendship API' , type: :api do
     @user = User.create(
       provider: 'twitter', username: 'BillyBob',
       image_url: 'http://...', image_thumbnail: 'http:..',
-      full_name: 'Bill Bob', uid: '12134', colour: 'blue',
-      device_token: 'NONE')
+      full_name: 'Bill Bob', uid: '12134', colour: 'blue')
     @friend = User.create(
       provider: 'twitter', username: 'Jimmy',
       image_url: 'http://...', image_thumbnail: 'http:..',
       full_name: 'Billdsf Bob', uid: '92811',
-      colour: 'blue', device_token: 'NONE')
+      colour: 'blue')
   end
 
   it 'should resquest a uid' do
