@@ -30,7 +30,7 @@ module Api
           user_hash.merge!(friend_id: friendship_id.last.id)
         else
           user_hash.merge!(friend_id: 'NULL')
-          user_hash.merge!(next_event: next_event.first) unless next_event.first.nil?
+          user_hash.merge!(next_event: next_event.first) unless next_event.nil?
         end
         respond_with user_hash
       end
