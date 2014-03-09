@@ -12,9 +12,9 @@ module Api
 
       def show
         user = User.find_by_uid(params[:uid])
-        next_event = Event.joins(:attending_users).merge(Attendee.where(user_id: user.id, going?: true)).order(:time_of_event) unless next_event.nil?
         render json: { error: 'User does not exist!' } if user.nil?
         return if user.nil?
+        next_event = Event.joins(:attending_users).merge(Attendee.where(user_id: user.id, going?: true)).order(:time_of_event)
         friend_user_id = User.find_by_uid(params[:requestor]).id if params[:requestor]
         friendship_id = Friendship.where(user_id: friend_user_id, friend_id: user.id)
         user_hash = {
@@ -29,8 +29,12 @@ module Api
         if friendship_id.any? && friend_user_id
           user_hash.merge!(friend_id: friendship_id.last.id)
         else
-          user_hash.merge!(friend_id: 'NULL')
-          user_hash.merge!(next_event: next_event.first) unless next_event.nil?
+          if next_event.empty?
+            user_hash.merge!(friend_id: 'NULL')
+          else
+            user_hash.merge!(friend_id: 'NULL')
+            user_hash.merge!(next_event: next_event.first)
+          end
         end
         respond_with user_hash
       end
