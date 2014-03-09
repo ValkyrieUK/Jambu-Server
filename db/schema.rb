@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140306225809) do
+ActiveRecord::Schema.define(version: 20140309010819) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,18 +42,23 @@ ActiveRecord::Schema.define(version: 20140306225809) do
   end
 
   create_table "admin_users", force: true do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                  default: "",  null: false
+    t.string   "encrypted_password",     default: "",  null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,   null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "cleff_id"
+    t.string   "gauth_secret"
+    t.string   "gauth_enabled",          default: "f"
+    t.string   "gauth_tmp"
+    t.datetime "gauth_tmp_datetime"
   end
 
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
@@ -61,11 +66,33 @@ ActiveRecord::Schema.define(version: 20140306225809) do
 
   create_table "attendees", force: true do |t|
     t.integer  "event_id"
-    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
     t.boolean  "going?"
   end
+
+  create_table "auths", force: true do |t|
+    t.string   "email",                  default: "",  null: false
+    t.string   "encrypted_password",     default: "",  null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,   null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "gauth_secret"
+    t.string   "gauth_enabled",          default: "f"
+    t.string   "gauth_tmp"
+    t.datetime "gauth_tmp_datetime"
+  end
+
+  add_index "auths", ["email"], name: "index_auths_on_email", unique: true, using: :btree
+  add_index "auths", ["reset_password_token"], name: "index_auths_on_reset_password_token", unique: true, using: :btree
 
   create_table "device_tokens", force: true do |t|
     t.string   "token"
@@ -83,6 +110,8 @@ ActiveRecord::Schema.define(version: 20140306225809) do
     t.integer  "user_id"
     t.string   "time_of_event"
     t.string   "canceled?"
+    t.string   "lat"
+    t.string   "long"
   end
 
   create_table "friendships", force: true do |t|
