@@ -2,6 +2,7 @@
 class Attendee < ActiveRecord::Base
   after_create :notification
   after_save :track
+  after_initialize :make_nil
 
   belongs_to :user
   belongs_to :event
@@ -25,5 +26,9 @@ class Attendee < ActiveRecord::Base
   def track
     return unless going? == true
     Activity.create(user_id: user_id, action: 'joined event', argument: event_id)
+  end
+
+  def make_nil
+    self.going? == nil
   end
 end
