@@ -7,7 +7,9 @@ module Api
       respond_to :json
 
       def show
-
+        puts params
+        response = Friendship.where(user_id: (params[:id]), friend_id: (params[:user])).any?
+        render json: { friends?: response }
       end
 
     end

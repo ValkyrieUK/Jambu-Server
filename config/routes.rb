@@ -8,6 +8,7 @@ Server::Application.routes.draw do
       resources :search
       resources :device_tokens
       resources :followers
+      resources :is_friends
       resources :attendees
       resources :friendships
       resources :events
