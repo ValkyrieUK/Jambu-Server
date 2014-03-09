@@ -10,11 +10,10 @@ module Api
         respond_with 'Provide a User ID'
       end
 
-      # def show
-      #   hash = { friendships: User.find(params[:id]).friends,
-      #            friendshipids: User.find(params[:id]).friendships }
-      #   respond_with hash
-      # end
+      def show
+        hash = { friendships: User.find(params[:id]).friends }
+        respond_with hash
+      end
 
       def create
         friendship = Friendship.new(friendship_params)

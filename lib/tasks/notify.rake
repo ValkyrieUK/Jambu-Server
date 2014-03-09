@@ -24,7 +24,7 @@ namespace :notify do
       #   Event.where(['time_of_event_end < ?', Time.now.to_i]).each do |i|
       #     i.update(time_of_event_end: 'over')
       #   end
-      end
+      # end
     end
   end
 end

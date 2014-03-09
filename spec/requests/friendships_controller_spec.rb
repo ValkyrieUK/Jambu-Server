@@ -18,6 +18,12 @@ describe 'Friendship API' , type: :api do
     response.status.should be(200)
   end
 
+  it 'should return a array of friends for user' do
+    user = FactoryGirl.create(:user)
+    get "api/v1/friendships/#{user.id}"
+    response.status.should be(200)
+  end
+
   it 'should create a new friendship' do
     post 'api/v1/friendships', friendship: { user_id: @user.id, friend_id: @friend.id }
     response.status.should be(200)
