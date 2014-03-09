@@ -12,7 +12,7 @@ module Api
 
       def show
         user = User.find_by_uid(params[:uid])
-        next_event = Event.joins(:attending_users).merge(Attendee.where(user_id: user.id, going?: true)).order(:time_of_event)
+        next_event = Event.joins(:attending_users).merge(Attendee.where(user_id: user.id, going?: true)).order(:time_of_event) unless next_event.nil?
         render json: { error: 'User does not exist!' } if user.nil?
         return if user.nil?
         friend_user_id = User.find_by_uid(params[:requestor]).id if params[:requestor]
