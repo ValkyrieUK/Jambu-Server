@@ -9,6 +9,8 @@ gem 'activeadmin', github: 'gregbell/active_admin'
 gem 'puma'
 gem 'apns'
 gem 'gcm'
+gem 'chartkick'
+gem 'groupdate'
 
 group :production do
   gem 'pg'

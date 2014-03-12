@@ -1,0 +1,20 @@
+<%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
+<center><h1>Users Created</h1></center>
+<center><h3><%= User.count %> users registered</h3></center>
+<%= line_chart User.group_by_day(:created_at).count %>
+<br><br><br><br>
+
+<center><h1>Devices Registered</h1></center>
+<center><h3><%= DeviceToken.count %> devices registered</h3></center>
+<%= pie_chart DeviceToken.group('os').count %>
+<br><br><br><br>
+
+<center><h1>Events Created</h1></center>
+<center><h3><%= Event.count %> event created</h3></center>
+<%= line_chart Event.group_by_day(:created_at).count %>
+<br><br><br><br>
+
+<center><h1>Friendships Created</h1></center>
+<center><h3><%= Friendship.count %> friendships created</h3></center>
+<%= line_chart Friendship.group_by_day(:created_at).count %>
+<br><br><br><br>
