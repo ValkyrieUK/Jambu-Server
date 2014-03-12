@@ -10,7 +10,7 @@ describe 'DeviceToken API' , type: :api do
 
   xit 'should be able to create a token' do
     post 'api/v1/device_tokens', device_token: {
-      os: 'iOS', token: 'fhjaksdhfka', user_id: 1}
+      os: 'iOS', token: 'fhjaksdhfka', user_id: 1 }
     response.status.should be(200)
   end
 end

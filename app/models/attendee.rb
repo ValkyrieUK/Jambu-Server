@@ -17,7 +17,7 @@ class Attendee < ActiveRecord::Base
       if e.os == 'iOS'
         APNS.send_notification(e.token, "#{owner.full_name} invited you to #{event.title}!") unless e.token == 'NONE' || e.token.nil?
       else
-        message = { data: { message: "#{owner.full_name} invited you to #{event.title}!"} }
+        message = { data: { message: "#{owner.full_name} invited you to #{event.title}!" } }
         gcm.send_notification(i.token, message) unless e.token == 'NONE' || e.token.nil?
       end
     end

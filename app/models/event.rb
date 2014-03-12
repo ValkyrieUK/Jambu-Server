@@ -30,7 +30,7 @@ class Event < ActiveRecord::Base
           i.token, "#{title} has been updated, Check the event to find out more!"
           ) unless self.time_of_event == 'in progress or over' || i.token.nil? || i.token == 'NONE'
         else
-          message = { data: { message: "#{title} has been updated, Check the event to find out more!"} }
+          message = { data: { message: "#{title} has been updated, Check the event to find out more!" } }
           gcm.send_notification(i.token, message) unless i.token == 'NONE' || i.token.nil?
         end
       end
