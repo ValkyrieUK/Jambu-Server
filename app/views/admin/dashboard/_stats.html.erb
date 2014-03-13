@@ -18,3 +18,8 @@
 <center><h3><%= Friendship.count %> friendships created</h3></center>
 <%= line_chart Friendship.group_by_day(:created_at).count %>
 <br><br><br><br>
+
+<center><h1>User Activities</h1></center>
+<center><h3><%= Activity.count %> activities created</h3></center>
+<%= line_chart Activity.group_by_day(:created_at).count %>
+<br><br><br><br>
