@@ -36,4 +36,14 @@ describe Attendee do
     attending_user.destroy
     Attendee.count.should eq(0)
   end
+
+  it 'should belong to a user' do
+    user = Attendee.reflect_on_association(:user)
+    user.macro.should == :belongs_to
+  end
+
+  it 'should belong to a user' do
+    event = Attendee.reflect_on_association(:event)
+    event.macro.should == :belongs_to
+  end
 end

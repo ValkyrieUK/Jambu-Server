@@ -30,4 +30,14 @@ describe Friendship do
     friendship.destroy
     Friendship.count.should eq(0)
   end
+
+  it 'should belong to a user' do
+    friend = Friendship.reflect_on_association(:user)
+    friend.macro.should == :belongs_to
+  end
+
+  it 'should belong to a friend' do
+    friend = Friendship.reflect_on_association(:friend)
+    friend.macro.should == :belongs_to
+  end
 end

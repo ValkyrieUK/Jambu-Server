@@ -107,4 +107,29 @@ describe User do
     search = User.search(@user.username)
     search.should eq(search)
   end
+
+  it 'should have many device tokens' do
+    token = User.reflect_on_association(:device_tokens)
+    token.macro.should == :has_many
+  end
+
+  it 'should have many activities' do
+    activity = User.reflect_on_association(:activities)
+    activity.macro.should == :has_many
+  end
+
+  it 'should have many activities' do
+    event = User.reflect_on_association(:events)
+    event.macro.should == :has_many
+  end
+
+  it 'should have many friendships' do
+    friendship = User.reflect_on_association(:friendships)
+    friendship.macro.should == :has_many
+  end
+
+  it 'should have many friends' do
+    friendship = User.reflect_on_association(:friends)
+    friendship.macro.should == :has_many
+  end
 end

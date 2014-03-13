@@ -49,4 +49,14 @@ describe Event do
       user_id: "#{@user.id}")
     @event.save.should be false
   end
+
+  it 'should belong to a user' do
+    event = Event.reflect_on_association(:user)
+    event.macro.should == :belongs_to
+  end
+
+  it 'should have many attendess' do
+    event = Event.reflect_on_association(:attendees)
+    event.macro.should == :has_many
+  end
 end

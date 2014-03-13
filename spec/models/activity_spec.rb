@@ -34,4 +34,9 @@ describe Activity do
       user_id: 1, time_of_event: '1238219381')
     Activity.count.should eq(3)
   end
+
+  it 'should belong to a user' do
+    activitiy = Activity.reflect_on_association(:user)
+    activitiy.macro.should == :belongs_to
+  end
 end

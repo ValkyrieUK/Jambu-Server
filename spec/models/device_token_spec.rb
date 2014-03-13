@@ -42,4 +42,9 @@ describe DeviceToken do
     token = DeviceToken.create(os: 'iOS', token: 'oqoqoqo', user_id: @user.id)
     token.save.should be true
   end
+
+  it 'should belong to a user' do
+    token = DeviceToken.reflect_on_association(:user)
+    token.macro.should == :belongs_to
+  end
 end
