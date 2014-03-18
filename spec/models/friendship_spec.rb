@@ -40,4 +40,11 @@ describe Friendship do
     friend = Friendship.reflect_on_association(:friend)
     friend.macro.should == :belongs_to
   end
+
+  it 'should be dependant destroy' do
+    Friendship.create(user_id: @user.id, friend_id: @friend.id)
+    Friendship.count.should eq(1)
+    @user.destroy
+    Friendship.count.should eq(0)
+  end
 end

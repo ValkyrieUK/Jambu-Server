@@ -46,7 +46,7 @@ describe Event do
   it 'should reject a event without a title' do
     @event = Event.create(
       title: 'Pub', description: nil,
-      user_id: "#{@user.id}")
+      user_id: @user.id)
     @event.save.should be false
   end
 
@@ -58,5 +58,22 @@ describe Event do
   it 'should have many attendess' do
     event = Event.reflect_on_association(:attendees)
     event.macro.should == :has_many
+  end
+
+  it 'should be dependant destroy' do
+    @user = User.create(
+      provider: 'twitter',
+      username: 'asadada',
+      image_url: 'http://...',
+      image_thumbnail: 'http:..',
+      full_name: 'Bill Bsadaob',
+      uid: '1231123',
+      colour: 'blue')
+    @event = Event.create(
+      title: 'Pub', description: 'pub with the ladz',
+      user_id: @user.id, time_of_event: '1238219381')
+    Event.count.should eq(1)
+    @user.destroy
+    Event.count.should eq(0)
   end
 end

@@ -6,6 +6,7 @@ describe DeviceToken do
       provider: 'twitter', username: 'BillyBob',
       image_url: 'http://...', image_thumbnail: 'http:..',
       full_name: 'Bill Bob', uid: '1234', colour: 'blue')
+      @token = @user.device_tokens.create(os: 'iOS', token: 'hghghghghg', user_id: @user.id)
     end
 
   it 'should not create a token if the parameters are not present' do
@@ -46,5 +47,11 @@ describe DeviceToken do
   it 'should belong to a user' do
     token = DeviceToken.reflect_on_association(:user)
     token.macro.should == :belongs_to
+  end
+
+  it 'should be dependant destroy' do
+    @user.device_tokens.count.should eq(1)
+    @user.destroy
+    @user.device_tokens.count.should eq(0)
   end
 end

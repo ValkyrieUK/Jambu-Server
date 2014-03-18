@@ -39,4 +39,10 @@ describe Activity do
     activitiy = Activity.reflect_on_association(:user)
     activitiy.macro.should == :belongs_to
   end
+
+  it 'should be dependant destroy' do
+    @user.activities.count.should eq(1)
+    @user.destroy
+    @user.activities.count.should eq(0)
+  end
 end
