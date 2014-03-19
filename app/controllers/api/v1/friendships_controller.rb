@@ -6,10 +6,6 @@ module Api
     class FriendshipsController < ApplicationController
       respond_to :json
 
-      def index
-        respond_with 'Provide a User ID'
-      end
-
       def show
         hash = { friendships: User.find(params[:id]).friends }
         respond_with hash

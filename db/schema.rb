@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140309011606) do
+ActiveRecord::Schema.define(version: 20140319215031) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -83,9 +83,9 @@ ActiveRecord::Schema.define(version: 20140309011606) do
     t.integer  "user_id"
     t.string   "time_of_event"
     t.string   "canceled?"
-    t.string   "lat"
-    t.string   "long"
     t.string   "time_of_event_end"
+    t.float    "lat"
+    t.float    "long"
   end
 
   create_table "friendships", force: true do |t|

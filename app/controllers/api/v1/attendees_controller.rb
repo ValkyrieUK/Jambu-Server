@@ -6,10 +6,6 @@ module Api
     class AttendeesController < ApplicationController
       respond_to :json
 
-      def index
-        respond_with 'Please provide something...'
-      end
-
       def show
         respond_with attendees: Event.find(params[:id]).attending_users
       end

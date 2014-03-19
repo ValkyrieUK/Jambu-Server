@@ -6,10 +6,6 @@ module Api
     class SearchController < ApplicationController
       respond_to :json
 
-      def index
-        respond_with 'Please provide a search term'
-      end
-
       def show
         term = params[:id]
         if term.length < 3

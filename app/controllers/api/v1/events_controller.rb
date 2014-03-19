@@ -6,10 +6,6 @@ module Api
     class EventsController < ApplicationController
       respond_to :json
 
-      def index
-        respond_with 'Please supply a User Record ID'
-      end
-
       def show
         respond_with Event.find(params[:id])
       end

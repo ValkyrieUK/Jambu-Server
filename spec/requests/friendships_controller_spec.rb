@@ -13,11 +13,6 @@ describe 'Friendship API' , type: :api do
       colour: 'blue')
   end
 
-  it 'should resquest a uid' do
-    get 'api/v1/friendships'
-    response.status.should be(200)
-  end
-
   it 'should return a array of friends for user' do
     user = FactoryGirl.create(:user)
     get "api/v1/friendships/#{user.id}"

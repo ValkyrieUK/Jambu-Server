@@ -1,5 +1,6 @@
 # Event Model
 class Event < ActiveRecord::Base
+  reverse_geocoded_by :lat, :long
   after_create :track
   after_initialize :nullify_time
   after_save :alert_attendees, on: :update

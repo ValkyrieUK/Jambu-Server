@@ -107,6 +107,7 @@ GEM
     gcm (0.0.7)
       httparty
       json
+    geocoder (1.1.9)
     groupdate (2.0.3)
       activerecord (>= 3.0.0)
     guard (2.3.0)
@@ -273,6 +274,7 @@ DEPENDENCIES
   factory_girl_rails
   faker
   gcm
+  geocoder
   groupdate
   guard-rspec
   json

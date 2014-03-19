@@ -11,6 +11,7 @@ gem 'apns'
 gem 'gcm'
 gem 'chartkick'
 gem 'groupdate'
+gem 'geocoder'
 
 group :production do
   gem 'pg'
