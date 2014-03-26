@@ -13,10 +13,8 @@ gem 'chartkick'
 gem 'groupdate'
 gem 'geocoder'
 gem 'sass-rails', '~> 4.0.2'
+gem 'pg'
 
-group :production do
-  gem 'pg'
-end
 
 group :test, :development do
   gem 'capybara'
