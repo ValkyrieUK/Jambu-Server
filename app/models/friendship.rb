@@ -11,7 +11,7 @@ class Friendship < ActiveRecord::Base
 
   def track
     friend = User.find(friend_id)
-    Activity.create(user_id: user_id, action: 'friend added',
+    Activity.delay.create(user_id: user_id, action: 'friend added',
                     name: friend.full_name, argument: friend.uid,
                     friend_id: friend.id)
   end
@@ -19,12 +19,13 @@ class Friendship < ActiveRecord::Base
   def notification
     user = User.find(user_id)
     friend = User.find(friend_id)
+    gcm ||= GCM.new(Rails.application.config.gcm_key)
     friend.device_tokens.each do |e|
       if e.os == 'iOS'
-        APNS.send_notification(e.token, "#{user.full_name} is now following you!") unless e.token == 'NONE' || e.token.nil?
+        APNS.delay.send_notification(e.token, "#{user.full_name} is now following you!") unless e.token == 'NONE' || e.token.nil?
       else
         message = { data: { message: "#{user.full_name} is now following you!" } }
-        gcm.send_notification(e.token, message) unless e.token == 'NONE' || e.token.nil?
+        gcm.delay.send_notification(e.token, message) unless e.token == 'NONE' || e.token.nil?
       end
     end
   end

@@ -71,6 +71,7 @@ Server::Application.configure do
 
   # Send deprecation notices to registered listeners.
   config.active_support.deprecation = :notify
+  config.gcm_key = 'AIzaSyA1Lhquy0i_IsHtKBxfSCZOJTlNnMNfb20'
 
   # Disable automatic flushing of the log to improve performance.
   # config.autoflush_log = false

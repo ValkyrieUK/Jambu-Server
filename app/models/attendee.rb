@@ -13,19 +13,25 @@ class Attendee < ActiveRecord::Base
     attendee = User.find(user_id)
     event = Event.find(event_id)
     owner = User.find(event.user_id)
+    send_notification(attendee, event, owner)
+  end
+
+
+  def send_notification(attendee, event, owner)
+    gcm ||= GCM.new(Rails.application.config.gcm_key)
     attendee.device_tokens.each do |e|
       if e.os == 'iOS'
-        APNS.send_notification(e.token, "#{owner.full_name} invited you to #{event.title}!") unless e.token == 'NONE' || e.token.nil?
+        APNS.delay.send_notification(e.token, "#{owner.full_name} invited you to #{event.title}!") unless e.token == 'NONE' || e.token.nil?
       else
         message = { data: { message: "#{owner.full_name} invited you to #{event.title}!" } }
-        gcm.send_notification(i.token, message) unless e.token == 'NONE' || e.token.nil?
+        gcm.delay.send_notification(i.token, message) unless e.token == 'NONE' || e.token.nil?
       end
     end
   end
 
   def track
     return unless going? == true
-    Activity.create(user_id: user_id, action: 'joined event', argument: event_id)
+    Activity.delay.create(user_id: user_id, action: 'joined event', argument: event_id)
   end
 
   def make_nil

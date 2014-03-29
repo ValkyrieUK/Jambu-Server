@@ -8,12 +8,12 @@
         if id.nil?
           User.all.each do |i|
             i.device_tokens.each do |e|
-              APNS.send_notification(e.token, message) unless e.token == 'NONE' || e.token.nil?
+              APNS.delay.send_notification(e.token, message) unless e.token == 'NONE' || e.token.nil?
             end
           end
         else
           User.find(id).device_tokens.each do |i|
-            APNS.send_notification(i.token, message)
+            APNS.delay.send_notification(i.token, message)
           end
         end
         redirect_to admin_notifications_path

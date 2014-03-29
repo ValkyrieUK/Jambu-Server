@@ -14,6 +14,8 @@ gem 'groupdate'
 gem 'geocoder'
 gem 'sass-rails', '~> 4.0.2'
 gem 'pg'
+gem 'delayed_job_active_record'
+gem 'daemons'
 
 
 group :test, :development do

@@ -28,4 +28,5 @@ Server::Application.configure do
   # number of complex assets.
   config.assets.debug = true
   I18n.enforce_available_locales = false
+  config.gcm_key = 'AIzaSyA1Lhquy0i_IsHtKBxfSCZOJTlNnMNfb20'
 end

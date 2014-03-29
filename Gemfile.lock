@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/gregbell/active_admin.git
-  revision: ae862fda64b2e44f676080bd7a5cb87dabbf449a
+  revision: 5fdb860dd41794a63bcfcffb88f4b56989f28d7b
   specs:
     activeadmin (1.0.0.pre)
       arbre (~> 1.0)
@@ -85,7 +85,13 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.7.0)
+    daemons (1.1.9)
     database_cleaner (1.2.0)
+    delayed_job (4.0.0)
+      activesupport (>= 3.0, < 4.1)
+    delayed_job_active_record (4.0.0)
+      activerecord (>= 3.0, < 4.1)
+      delayed_job (>= 3.0, < 4.1)
     devise (3.2.4)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -195,7 +201,7 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rainbow (2.0.0)
-    rake (10.2.0)
+    rake (10.2.2)
     ransack (1.1.0)
       actionpack (>= 3.0)
       activerecord (>= 3.0)
@@ -278,7 +284,9 @@ DEPENDENCIES
   brakeman
   capybara
   chartkick
+  daemons
   database_cleaner
+  delayed_job_active_record
   factory_girl_rails
   faker
   gcm

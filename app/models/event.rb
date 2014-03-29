@@ -20,19 +20,20 @@ class Event < ActiveRecord::Base
   end
 
   def track
-    Activity.create(user_id: user_id, action: 'event created', name: title)
+    Activity.delay.create(user_id: user_id, action: 'event created', name: title)
   end
 
   def alert_attendees
+    gcm ||= GCM.new(Rails.application.config.gcm_key)
     attending_users.each do |e|
       e.device_tokens.each do |i|
         if i.os == 'iOS'
-          APNS.send_notification(
+          APNS.delay.send_notification(
           i.token, "#{title} has been updated, Check the event to find out more!"
           ) unless self.time_of_event == 'in progress or over' || i.token.nil? || i.token == 'NONE'
         else
           message = { data: { message: "#{title} has been updated, Check the event to find out more!" } }
-          gcm.send_notification(i.token, message) unless i.token == 'NONE' || i.token.nil?
+          gcm.delay.send_notification(i.token, message) unless i.token == 'NONE' || i.token.nil?
         end
       end
     end
