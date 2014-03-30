@@ -1,1 +1,1 @@
-worker: bundle exec bin/delayed_job start
+worker: nice -n 15 bundle exec bin/delayed_job start
