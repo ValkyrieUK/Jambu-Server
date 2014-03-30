@@ -24,7 +24,7 @@ module Api
         user = User.find(attendee.user_id)
         event = Event.find(attendee.event_id)
         respond_with attendee.update(attendee_params)
-        Activity.delay.create(user_id: user.id, action: 'attendee updated', argument: event.id)
+        Activity.create(user_id: user.id, action: 'attendee updated', argument: event.id)
       end
 
       def destroy

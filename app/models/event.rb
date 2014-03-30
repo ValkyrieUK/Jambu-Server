@@ -24,16 +24,16 @@ class Event < ActiveRecord::Base
   end
 
   def alert_attendees
-    gcm ||= GCM.new(Rails.application.config.gcm_key)
     attending_users.each do |e|
       e.device_tokens.each do |i|
         if i.os == 'iOS'
-          APNS.delay.send_notification(
+          APNS.send_notification(
           i.token, "#{title} has been updated, Check the event to find out more!"
           ) unless self.time_of_event == 'in progress or over' || i.token.nil? || i.token == 'NONE'
         else
+          gcm ||= GCM.new(Rails.application.config.gcm_key)
           message = { data: { message: "#{title} has been updated, Check the event to find out more!" } }
-          gcm.delay.send_notification(i.token, message) unless i.token == 'NONE' || i.token.nil?
+          gcm.send_notification(i.token, message) unless i.token == 'NONE' || i.token.nil?
         end
       end
     end

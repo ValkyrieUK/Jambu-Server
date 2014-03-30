@@ -30,7 +30,7 @@ module Api
         user = User.find(params[:id])
         user.update(user_params)
         if user.save
-          Activity.delay.create(user_id: user.id, action: 'user updated')
+          Activity.create(user_id: user.id, action: 'user updated')
           respond_with user
         else
           render json: { errors: user.errors.full_messages }

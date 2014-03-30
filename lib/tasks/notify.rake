@@ -2,20 +2,20 @@
 namespace :notify do
   desc 'Check database for events about to occour'
   task :push => :environment do
-    include ActionView::Helpers::DateHelper
     now = (Time.now.to_i + 900).to_s
-    gcm ||= GCM.new(Rails.application.config.gcm_key)
     if Event.where(['time_of_event < ?', now])
+      include ActionView::Helpers::DateHelper
       Event.where(['time_of_event < ?', now]).each do |e|
         time_until = distance_of_time_in_words(now.to_i, e.time_of_event.to_i)
         e.attendees.each do |i|
           user = User.find(i.user_id)
           user.device_tokens.each do |p|
             if p.os == 'iOS'
-              APNS.delay.send_notification(p.token, "#{e.title} will begin in #{time_until}!") unless p.token == 'NONE' || p.token.nil? || i.going? == false
+              APNS.send_notification(p.token, "#{e.title} will begin in #{time_until}!") unless p.token == 'NONE' || p.token.nil? || i.going? == false
             else
+              gcm ||= GCM.new(Rails.application.config.gcm_key)
               message = { data: { message: "#{e.title} will begin in #{time_until}!" } }
-              gcm.delay.send_notification(p.token, message) unless p.token == 'NONE' || p.token.nil?
+              gcm.send_notification(p.token, message) unless p.token == 'NONE' || p.token.nil?
             end
           end
         end

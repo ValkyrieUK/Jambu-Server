@@ -21,11 +21,11 @@ class Friendship < ActiveRecord::Base
     friend = User.find(friend_id)
     friend.device_tokens.each do |e|
       if e.os == 'iOS'
-        APNS.delay.send_notification(e.token, "#{user.full_name} is now following you!") unless e.token == 'NONE' || e.token.nil?
+        APNS.send_notification(e.token, "#{user.full_name} is now following you!") unless e.token == 'NONE' || e.token.nil?
       else
         gcm ||= GCM.new(Rails.application.config.gcm_key)
         message = { data: { message: "#{user.full_name} is now following you!" } }
-        gcm.delay.send_notification(e.token, message) unless e.token == 'NONE' || e.token.nil?
+        gcm.send_notification(e.token, message) unless e.token == 'NONE' || e.token.nil?
       end
     end
   end

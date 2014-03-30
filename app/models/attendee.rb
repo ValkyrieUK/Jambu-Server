@@ -18,13 +18,13 @@ class Attendee < ActiveRecord::Base
 
 
   def send_notification(attendee, event, owner)
-    gcm ||= GCM.new(Rails.application.config.gcm_key)
     attendee.device_tokens.each do |e|
       if e.os == 'iOS'
-        APNS.delay.send_notification(e.token, "#{owner.full_name} invited you to #{event.title}!") unless e.token == 'NONE' || e.token.nil?
+        APNS.send_notification(e.token, "#{owner.full_name} invited you to #{event.title}!") unless e.token == 'NONE' || e.token.nil?
       else
+        gcm ||= GCM.new(Rails.application.config.gcm_key)
         message = { data: { message: "#{owner.full_name} invited you to #{event.title}!" } }
-        gcm.delay.send_notification(i.token, message) unless e.token == 'NONE' || e.token.nil?
+        gcm.send_notification(i.token, message) unless e.token == 'NONE' || e.token.nil?
       end
     end
   end
