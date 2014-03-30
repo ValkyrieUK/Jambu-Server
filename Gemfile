@@ -16,7 +16,6 @@ gem 'sass-rails', '~> 4.0.2'
 gem 'pg'
 gem 'delayed_job_active_record'
 gem 'daemons'
-gem 'newrelic_rpm'
 
 
 

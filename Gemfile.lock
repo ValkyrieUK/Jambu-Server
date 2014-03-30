@@ -166,7 +166,6 @@ GEM
     minitest (4.7.5)
     multi_json (1.9.2)
     multi_xml (0.5.5)
-    newrelic_rpm (3.7.3.204)
     nio4r (1.0.0)
     nokogiri (1.6.1)
       mini_portile (~> 0.5.0)
@@ -295,7 +294,6 @@ DEPENDENCIES
   groupdate
   guard-rspec
   json
-  newrelic_rpm
   pg
   puma
   rails (= 4.0.4)
