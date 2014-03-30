@@ -2,9 +2,9 @@
 namespace :notify do
   desc 'Check database for events about to occour'
   task :push => :environment do
+    include ActionView::Helpers::DateHelper
     now = (Time.now.to_i + 900).to_s
     if Event.where(['time_of_event < ?', now])
-      include ActionView::Helpers::DateHelper
       Event.where(['time_of_event < ?', now]).each do |e|
         time_until = distance_of_time_in_words(now.to_i, e.time_of_event.to_i)
         e.attendees.each do |i|
