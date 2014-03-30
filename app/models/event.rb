@@ -20,7 +20,7 @@ class Event < ActiveRecord::Base
   end
 
   def track
-    Activity.delay.create(user_id: user_id, action: 'event created', name: title)
+    Activity.create(user_id: user_id, action: 'event created', name: title)
   end
 
   def alert_attendees

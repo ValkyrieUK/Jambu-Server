@@ -26,6 +26,6 @@ class User < ActiveRecord::Base
   end
 
   def track
-    Activity.delay.create(user_id: id, action: 'user created')
+    Activity.create(user_id: id, action: 'user created')
   end
 end

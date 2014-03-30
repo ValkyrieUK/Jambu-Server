@@ -31,7 +31,7 @@ class Attendee < ActiveRecord::Base
 
   def track
     return unless going? == true
-    Activity.delay.create(user_id: user_id, action: 'joined event', argument: event_id)
+    Activity.create(user_id: user_id, action: 'joined event', argument: event_id)
   end
 
   def make_nil
