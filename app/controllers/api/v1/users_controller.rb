@@ -11,7 +11,7 @@ module Api
       end
 
       def show
-        user = User.find_by_uid(params[:uid])
+        user = User.find_by(uid: params[:uid])
         render json: { error: 'User does not exist!' } if user.nil?
         return if user.nil?
         create_hash_vars(user)
@@ -27,7 +27,7 @@ module Api
       end
 
       def update
-        user = User.find(params[:id])
+        user = User.find_by(id: params[:id])
         user.update(user_params)
         if user.save
           Activity.create(user_id: user.id, action: 'user updated')
@@ -43,9 +43,9 @@ module Api
       end
 
       def create_hash_vars(user)
-        join_event = Event.joins(:attending_users).merge(Attendee.where(user_id: user.id, going?: true))
+        join_event = user.attending_events
         next_event = join_event.order(:time_of_event)
-        friend_user_id = User.find_by_uid(params[:requestor]).id if params[:requestor]
+        friend_user_id = User.find_by(uid: params[:requestor]).id if params[:requestor]
         friendship_id = Friendship.where(user_id: friend_user_id, friend_id: user.id)
         create_hash(user, join_event, next_event, friend_user_id, friendship_id)
       end

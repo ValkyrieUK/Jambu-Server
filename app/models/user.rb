@@ -21,6 +21,10 @@ class User < ActiveRecord::Base
     where('username iLIKE ? or full_name iLIKE ?', "%#{search}%", "%#{search}%") if search
   end
 
+  def attending_events
+    Event.joins(:attending_users).merge(Attendee.where(user_id: self, going?: true))
+  end
+
   def none?
     device_token == 'NONE'
   end

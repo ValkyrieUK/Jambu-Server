@@ -32,7 +32,7 @@ module Api
       end
 
       def attendee_params
-        params.require(:attendee).permit(:event_id, :user_id, :time_of_event, :going?)
+        params.require(:attendee).permit(:event_id, :user_id, :going?)
       end
     end
   end

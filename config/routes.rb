@@ -12,7 +12,8 @@ Server::Application.routes.draw do
       resources :attendees, only: [:show, :create, :update, :destroy]
       resources :friendships, only: [:show, :create, :destroy]
       resources :events, only: [:show, :create, :update, :destroy]
-      post '/nearby_eveneants', to: 'nearby_events#nearby'
+      resources :batch_attendees, only: [:create]
+      post '/nearby_events', to: 'nearby_events#nearby'
       resources :users, except: :show
       get 'users/:uid', to: 'users#show'
     end
