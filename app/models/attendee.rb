@@ -24,7 +24,7 @@ class Attendee < ActiveRecord::Base
       else
         gcm ||= GCM.new(Rails.application.config.gcm_key)
         message = { data: { message: "#{owner.full_name} invited you to #{event.title}!" } }
-        gcm.send_notification(i.token, message) unless e.token == 'NONE' || e.token.nil?
+        gcm.send_notification(e.token, message) unless e.token == 'NONE' || e.token.nil?
       end
     end
   end
