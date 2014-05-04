@@ -25,6 +25,10 @@ class User < ActiveRecord::Base
     Event.joins(:attending_users).merge(Attendee.where(user_id: self, going?: true))
   end
 
+  def pending_invites
+    Event.joins(:attending_users).merge(Attendee.where(user_id: self, going?: nil)
+  end
+
   def none?
     device_token == 'NONE'
   end
