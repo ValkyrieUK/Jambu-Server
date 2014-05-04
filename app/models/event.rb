@@ -13,7 +13,6 @@ class Event < ActiveRecord::Base
   has_many :inverse_atteding_users, class_name: 'Attendee', foreign_key: 'user_id'
 
   validates :title, :user_id, presence: true
-  validates :title, uniqueness: { scope: :user_id }
 
   def nullify_time
     self.time_of_event  ||= 'none'
