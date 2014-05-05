@@ -28,7 +28,7 @@ class Event < ActiveRecord::Base
         if i.os == 'iOS'
           APNS.send_notification(
           i.token, "#{title} has been updated, Check the event to find out more!"
-          ) unless self.time_of_event == 'in progress or over' || i.token.nil? || i.token == 'NONE'
+          ) unless self.canceled? == 'true' || i.token.nil? || i.token == 'NONE'
         else
           gcm ||= GCM.new(Rails.application.config.gcm_key)
           message = { data: { message: "#{title} has been updated, Check the event to find out more!" } }
