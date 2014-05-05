@@ -6,6 +6,16 @@ module Api
     class EventsController < ApplicationController
       respond_to :json
 
+      def events_attending
+        if params[:past]
+          events = User.find_by(uid: params[:uid]).attending_events_past
+        else
+          events = User.find_by(uid: params[:uid]).attending_events_future
+        end
+        return unless events
+        render json: { events: events }
+      end
+
       def show
         respond_with Event.find(params[:id])
       end

@@ -20,11 +20,13 @@ module Api
       end
 
       def update
-        attendee = Attendee.find(params[:id])
-        user = User.find(attendee.user_id)
-        event = Event.find(attendee.event_id)
+        user = User.find_by(uid: params[:uid])
+        attendee = Attendee.find(user_id: user.id, event_id: params[:event_id])
         respond_with attendee.update(attendee_params)
-        Activity.create(user_id: user.id, action: 'attendee updated', argument: event.id)
+        if attendee.save
+          Activity.create(user_id: user.id, action: 'attendee updated', argument: event.id)
+          render json: { success: true }
+        end
       end
 
       def destroy

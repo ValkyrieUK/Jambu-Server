@@ -13,9 +13,11 @@ Server::Application.routes.draw do
       resources :friendships, only: [:show, :create, :destroy]
       resources :events, only: [:show, :create, :update, :destroy]
       resources :batch_attendees, only: [:create]
+      resources :pending_events
       get '/nearby_events', to: 'nearby_events#nearby'
       resources :users, except: :show
       get 'users/:uid', to: 'users#show'
+      get '/events_attending', to: 'events#events_attending'
     end
   end
   post '/admin/notifications',to: 'admin/notifications#notify'
