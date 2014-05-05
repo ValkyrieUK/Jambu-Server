@@ -15,6 +15,7 @@ Server::Application.routes.draw do
       resources :batch_attendees, only: [:create]
       resources :pending_events
       resources :owned_events
+      resources :image_from_id
       get '/nearby_events', to: 'nearby_events#nearby'
       resources :users, except: :show
       get 'users/:uid', to: 'users#show'
