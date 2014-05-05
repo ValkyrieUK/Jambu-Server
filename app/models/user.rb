@@ -22,11 +22,11 @@ class User < ActiveRecord::Base
   end
 
   def attending_events_future
-      Event.joins(:attending_users).where(time_of_event: '< Time.now').merge(Attendee.where(user_id: self, going?: true))
+      Event.joins(:attending_users).where(time_of_event: '> Time.now').merge(Attendee.where(user_id: self, going?: true))
   end
 
   def attending_events_past
-      Event.joins(:attending_users).where(time_of_event: '> Time.now').merge(Attendee.where(user_id: self, going?: true))
+      Event.joins(:attending_users).where(time_of_event: '< Time.now').merge(Attendee.where(user_id: self, going?: true))
   end
 
   def attending_events
