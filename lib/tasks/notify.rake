@@ -21,8 +21,8 @@ namespace :notify do
         end
         # e.update(time_of_event: 'in progress or over')
       end
-      if Event.where(['time_of_event_end < ?', Time.now.to_i.to_s])
-        Event.where(['time_of_event_end < ?', Time.now.to_i.to_s]).each do |i|
+      if Event.where(['time_of_event_end < ? AND canceled = ?', Time.now.to_i.to_s, 'false'])
+        Event.where(['time_of_event_end < ? AND canceled = ?', Time.now.to_i.to_s, 'false']).each do |i|
           # i.update(time_of_event_end: 'over')
           i.update(canceled: 'true')
         end
