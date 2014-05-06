@@ -4,8 +4,8 @@ namespace :notify do
   task :push => :environment do
     include ActionView::Helpers::DateHelper
     now = (Time.now.to_i + 900).to_s
-    if Event.where(['time_of_event < ?', now], canceled?: 'false')
-      Event.where(['time_of_event < ?', now]).each do |e|
+    if Event.where(['time_of_event < ? AND canceled = ?', now, 'false'])
+      Event.where(['time_of_event < ? AND canceled = ?', now, 'false']).each do |e|
         time_until = distance_of_time_in_words(now.to_i, e.time_of_event.to_i)
         e.attendees.each do |i|
           user = User.find(i.user_id)
@@ -24,7 +24,7 @@ namespace :notify do
       if Event.where(['time_of_event_end < ?', Time.now.to_i.to_s])
         Event.where(['time_of_event_end < ?', Time.now.to_i.to_s]).each do |i|
           # i.update(time_of_event_end: 'over')
-          i.update(canceled?: 'true')
+          i.update(canceled: 'true')
         end
       end
     end

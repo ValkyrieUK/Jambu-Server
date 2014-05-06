@@ -41,14 +41,14 @@ module Api
 
       def destroy
         event = Event.find(params[:id])
-        respond_with event.update(canceled?: true)
+        respond_with event.update(canceled: true)
         Activity.where(user_id: event.user_id, action: 'event created',
                        name: event.title).last.destroy
       end
 
       def event_params
         params.require(:event).permit(:title, :description, :user_id,
-                                      :time_of_event, :canceled?, :lat,
+                                      :time_of_event, :canceled, :lat,
                                       :long, :time_of_event_end)
       end
     end
