@@ -35,7 +35,7 @@ class User < ActiveRecord::Base
   end
 
   def pending_invites
-      Event.joins(:attending_users).where(canceled: 'true').merge(Attendee.where(user_id: self, going?: nil))
+      Event.joins(:attending_users).where(canceled: 'false').merge(Attendee.where(user_id: self, going?: nil))
   end
 
   def none?

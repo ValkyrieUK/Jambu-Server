@@ -45,7 +45,7 @@ module Api
       def create_hash_vars(user)
         join_event = user.pending_invites
         events_attended = user.attending_events_past
-        next_event = join_event.order(:time_of_event)
+        next_event = user.attending_events_future.order(:time_of_event)
         friend_user_id = User.find_by(uid: params[:requestor]).id if params[:requestor]
         friendship_id = Friendship.where(user_id: friend_user_id, friend_id: user.id)
         create_hash(user, join_event, next_event, friend_user_id, friendship_id, events_attended)
@@ -65,8 +65,6 @@ module Api
           user_hash.merge!(friend_id: friendship_id.last.id)
         else
           if next_event.empty?
-            user_hash.merge!(friend_id: 'NULL')
-          elsif next_event.first.time_of_event > Time.now.to_i.to_s
             user_hash.merge!(friend_id: 'NULL')
           else
             user_hash.merge!(friend_id: 'NULL')
