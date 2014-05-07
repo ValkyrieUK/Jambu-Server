@@ -21,7 +21,7 @@ class Friendship < ActiveRecord::Base
     friend = User.find(friend_id)
     friend.device_tokens.each do |e|
       if e.os == 'iOS'
-        APNS.send_notification(e.token, :alert => "#{user.full_name} is now following you!", :badge => 1, :sound => 'default', :other => {:p => 'foll', :pid => e.uid}) unless e.token == 'NONE' || e.token.nil?
+        APNS.send_notification(e.token, :alert => "#{user.full_name} is now following you!", :badge => 1, :sound => 'default', :other => {:p => 'foll', :pid => user.id}) unless e.token == 'NONE' || e.token.nil?
       else
         gcm ||= GCM.new(Rails.application.config.gcm_key)
         message = { data: { message: "#{user.full_name} is now following you!" } }
