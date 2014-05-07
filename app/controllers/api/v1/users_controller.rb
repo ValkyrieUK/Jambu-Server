@@ -68,7 +68,7 @@ module Api
             user_hash.merge!(friend_id: 'NULL')
           else
             user_hash.merge!(friend_id: 'NULL')
-            user_hash.merge!(next_event: next_event.first) unless next_event.first == 'over'
+            user_hash.merge!(next_event: next_event.first) unless next_event.first.time_of_event.to_i < Time.now.to_i
           end
         end
         respond_with user_hash
