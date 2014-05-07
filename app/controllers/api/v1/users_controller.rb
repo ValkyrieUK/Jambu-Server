@@ -44,20 +44,21 @@ module Api
 
       def create_hash_vars(user)
         join_event = user.pending_invites
+        events_attended = user.attending_events_past
         next_event = join_event.order(:time_of_event)
         friend_user_id = User.find_by(uid: params[:requestor]).id if params[:requestor]
         friendship_id = Friendship.where(user_id: friend_user_id, friend_id: user.id)
-        create_hash(user, join_event, next_event, friend_user_id, friendship_id)
+        create_hash(user, join_event, next_event, friend_user_id, friendship_id, events_attended)
       end
 
-      def create_hash(user, join_event, next_event, friend_user_id, friendship_id)
+      def create_hash(user, join_event, next_event, friend_user_id, friendship_id, events_attended)
         user_hash = {
           user: user,
           counts: {
             friends: user.friends.count ,
             added_as_friend: user.inverse_friendships.count,
             events_created: user.events.count,
-            events_attended: join_event.count,
+            events_attended: events_attended.count,
             event_invites_pending: join_event.count }
           }
         if friendship_id.any? && friend_user_id
