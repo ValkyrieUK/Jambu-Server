@@ -6,8 +6,7 @@ module Api
     class NearbyEventsController < ApplicationController
       respond_to :json
       def nearby
-        puts params
-        render json: { events: Event.near([params[:lat], params[:long]], params[:distance]) }
+        render json: { events: Event.near([params[:lat], params[:long]], params[:distance]).where(privacy: 'public') }
       end
     end
   end
