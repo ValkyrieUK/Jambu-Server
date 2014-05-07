@@ -66,6 +66,8 @@ module Api
         else
           if next_event.empty?
             user_hash.merge!(friend_id: 'NULL')
+          elsif next_event.first.time_of_event > Time.now.to_i.to_s
+            user_hash.merge!(friend_id: 'NULL')
           else
             user_hash.merge!(friend_id: 'NULL')
             user_hash.merge!(next_event: next_event.first) unless next_event.first == 'over'
