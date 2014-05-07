@@ -21,7 +21,7 @@ class Attendee < ActiveRecord::Base
     return unless attendee && event && owner
     attendee.device_tokens.each do |e|
       if e.os == 'iOS'
-        APNS.send_notification(e.token, "#{owner.full_name} invited you to #{event.title}!", :sound => 'default', :other => {:p => 'invite', :pid => event.id.to_s}) unless e.token == 'NONE' || e.token.nil?
+        APNS.send_notification(e.token, "#{owner.full_name} invited you to #{event.title}!",:alert => 'Hello iPhone!', :badge => 1, :sound => 'default', :other => {:p => 'invite', :pid => event.id.to_s}) unless e.token == 'NONE' || e.token.nil?
       else
         gcm ||= GCM.new(Rails.application.config.gcm_key)
         message = { data: { message: "#{owner.full_name} invited you to #{event.title}!" } }
