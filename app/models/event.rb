@@ -27,7 +27,7 @@ class Event < ActiveRecord::Base
       e.device_tokens.each do |i|
         if i.os == 'iOS'
           APNS.send_notification(
-          i.token, "#{title} has been updated, Check the event to find out more!", :sound => 'default', :other => {:p => 'eventUp', :pid => self.id}
+          i.token, "#{title} has been updated, Check the event to find out more!", :sound => 'default', :other => {:p => 'eventUp', :pid => id.to_s}
           ) unless self.canceled == 'true' || i.token.nil? || i.token == 'NONE'
         else
           gcm ||= GCM.new(Rails.application.config.gcm_key)
