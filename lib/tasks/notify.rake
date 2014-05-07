@@ -12,7 +12,7 @@ namespace :notify do
           user.device_tokens.each do |p|
             if p.os == 'iOS'
               APNS.send_notification(p.token, :alert => "#{e.title} will begin in #{time_until}!",
-                                     :sound => 'default', :other => {:p => 'esoon', :pid => e.id}) unless p.token == 'NONE' || p.token.nil? || i.going? == false
+                                     : ) unless p.token == 'NONE' || p.token.nil? || i.going? == false
             else
               gcm ||= GCM.new(Rails.application.config.gcm_key)
               message = { data: { message: "#{e.title} will begin in #{time_until}!" } }
