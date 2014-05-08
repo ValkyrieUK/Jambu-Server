@@ -21,10 +21,10 @@ module Api
 
       def update
         user = User.find_by(uid: params[:uid].to_s)
-        attendee = Attendee.where(user_id: user.id, event_id: params[:event_id].to_i)
+        attendee = Attendee.where(user_id: user.id, event_id: params[:event_id]).last
         attendee.update(going?: params[:going])
         if attendee.save
-          Activity.create(user_id: user.id, action: 'attendee updated', argument: event.id)
+          Activity.create(user_id: user.id, action: 'attendee updated', argument: 'going to event')
           render json: { success: true }
         end
       end
