@@ -21,9 +21,7 @@ module Api
 
       def update
         user = User.find_by(uid: params[:uid].to_s)
-        puts user
-        attendee = Attendee.find(user_id: user.id, event_id: params[:event_id].to_i)
-        puts attendee
+        attendee = Attendee.where(user_id: user.id, event_id: params[:event_id].to_i)
         respond_with attendee.update(attendee_params)
         if attendee.save
           Activity.create(user_id: user.id, action: 'attendee updated', argument: event.id)
