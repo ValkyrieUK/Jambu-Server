@@ -69,6 +69,7 @@ module Api
           else
             user_hash.merge!(friend_id: 'NULL')
             user_hash.merge!(next_event: next_event.first) unless next_event.first.time_of_event.to_i < Time.now.to_i
+            user_hash.merge!(next_event_attendees: next_event.first.attendees.where(going?: true).count) unless next_event.first.time_of_event.to_i < Time.now.to_i
           end
         end
         respond_with user_hash
