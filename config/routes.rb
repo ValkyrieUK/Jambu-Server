@@ -20,7 +20,7 @@ Server::Application.routes.draw do
       resources :users, except: :show
       get 'users/:uid', to: 'users#show'
       get '/events_attending', to: 'events#events_attending'
-      put '/attendees', to: 'attendees#update'
+      post '/rsvp', to: 'attendees#rsvp'
     end
   end
   post '/admin/notifications',to: 'admin/notifications#notify'

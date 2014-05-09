@@ -20,6 +20,9 @@ module Api
       end
 
       def update
+      end
+
+      def rsvp
         user = User.find_by(uid: params[:uid].to_s)
         attendee = Attendee.where(user_id: user.id, event_id: params[:event_id]).last
         attendee.update(going?: params[:going])
