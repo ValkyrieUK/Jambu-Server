@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
     puts '***************'
     puts 'NEW API REQUEST'
     puts '***************'
-    tick request
+    tick_request
     # api_auth
   end
 
