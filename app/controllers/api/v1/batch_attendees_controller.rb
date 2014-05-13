@@ -6,10 +6,12 @@ module Api
     class BatchAttendeesController < ApplicationController
 
       def create
-        params[:attendees].each do |user_uid|
-          user = User.find_by(uid: user_uid.to_s)
-          attendee = Attendee.new(user_id: user.id, event_id: params[:event_id])
-          attendee.save!
+        if params[:attendees]
+          params[:attendees].each do |user_uid|
+            user = User.find_by(uid: user_uid.to_s)
+            attendee = Attendee.new(user_id: user.id, event_id: params[:event_id])
+            attendee.save!
+          end
         end
         render json: {response: "okay"}
       end
