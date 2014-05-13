@@ -1,7 +1,7 @@
 # Event Model
 class Event < ActiveRecord::Base
   reverse_geocoded_by :lat, :long
-  after_create :track
+  after_create :track, :create_owner_attendee
   after_initialize :nullify_time
   after_save :alert_attendees, on: :update
 
@@ -24,6 +24,10 @@ class Event < ActiveRecord::Base
 
   def attending_users
     attendees.where(going?: true).map {|attendee| User.find(attendee.user_id)}
+  end
+
+  def create_owner_attendee
+    Attendee.create(user_id: self.user_id, event_id: self.id, going?: true)
   end
 
   def alert_attendees
