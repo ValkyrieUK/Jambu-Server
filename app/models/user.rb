@@ -21,21 +21,20 @@ class User < ActiveRecord::Base
     where('username iLIKE ? or full_name iLIKE ?', "%#{search}%", "%#{search}%") if search
   end
 
-
   def attending_events_future
-    Event.joins(:attending_users).where("time_of_event > ?", Time.now.to_i.to_s).merge(Attendee.where(user_id: self, going?: true))
+    Event.joins(:invited_users).where("time_of_event > ?", Time.now.to_i.to_s).merge(Attendee.where(user_id: self, going?: true))
   end
 
   def attending_events_past
-      Event.joins(:attending_users).where("time_of_event < ?", Time.now.to_i.to_s).merge(Attendee.where(user_id: self, going?: true))
+      Event.joins(:invited_users).where("time_of_event < ?", Time.now.to_i.to_s).merge(Attendee.where(user_id: self, going?: true))
   end
 
   def attending_events
-    Event.joins(:attending_users).merge(Attendee.where(user_id: self, going?: true))
+    Event.joins(:invited_users).merge(Attendee.where(user_id: self, going?: true))
   end
 
   def pending_invites
-      Event.joins(:attending_users).where(canceled: 'false').merge(Attendee.where(user_id: self, going?: nil))
+      Event.joins(:invited_users).where(canceled: 'false').merge(Attendee.where(user_id: self, going?: nil))
   end
 
   def none?

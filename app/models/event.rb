@@ -9,7 +9,7 @@ class Event < ActiveRecord::Base
 
   has_many :attendees, dependent: :destroy
   has_many :users
-  has_many :attending_users, through: :attendees, source: :user
+  has_many :invited_users, through: :attendees, source: :user
   has_many :inverse_atteding_users, class_name: 'Attendee', foreign_key: 'user_id'
 
   validates :title, :user_id, presence: true
@@ -22,8 +22,12 @@ class Event < ActiveRecord::Base
     Activity.create(user_id: user_id, action: 'event created', name: title, argument: self.id)
   end
 
+  def attending_users
+    attendees.where(going?: true).map {|attendee| User.find(attendee.user_id)}
+  end
+
   def alert_attendees
-    attending_users.each do |e|
+    invited_users.each do |e|
       e.device_tokens.each do |i|
         if i.os == 'iOS'
           APNS.send_notification(
