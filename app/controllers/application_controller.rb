@@ -9,7 +9,12 @@ class ApplicationController < ActionController::Base
     puts '***************'
     puts 'NEW API REQUEST'
     puts '***************'
+    tick request
     # api_auth
+  end
+
+  def tick_request
+    ApiRequest.create()
   end
 
   def api_auth
