@@ -9,14 +9,9 @@ class ApplicationController < ActionController::Base
     puts '***************'
     puts 'NEW API REQUEST'
     puts '***************'
-    tick_request
     # api_auth
   end
-
-  def tick_request
-    ApiRequest.create()
-  end
-
+  
   def api_auth
     key = response.headers['api-key']
     if key != ENV['API-KEY']
