@@ -24,7 +24,7 @@ namespace :notify do
       end
       if Event.where(['time_of_event_end < ? AND canceled = ? AND notified = ?', Time.now.to_i.to_s, 'false', true])
         Event.where(['time_of_event_end < ? AND canceled = ? AND notified = ?', Time.now.to_i.to_s, 'false', true]).each do |i|
-          i.update(canceled: 'true')
+          i.update_attribute(:canceled, 'true')
         end
       end
     end
