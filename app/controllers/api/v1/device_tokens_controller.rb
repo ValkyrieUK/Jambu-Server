@@ -3,7 +3,7 @@ module Api
   # DeviceTokenController
   module V1
     # DeviceTokenController
-    class DeviceTokensController < ApplicationController
+    class DeviceTokensController < ApiController
       respond_to :json
 
       def create

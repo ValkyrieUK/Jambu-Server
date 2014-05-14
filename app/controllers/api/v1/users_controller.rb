@@ -3,7 +3,7 @@ module Api
 # API Users controller
   module V1
     # API Users controller
-    class UsersController < ApplicationController
+    class UsersController < ApiController
       respond_to :json
 
       def index

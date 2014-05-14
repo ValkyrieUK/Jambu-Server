@@ -22,10 +22,10 @@ describe 'Users API' , type: :api do
 
   it 'should be able to create a new user and save them via the API' do
     post 'api/v1/users', user: {
-     uid: '4321', username: 'Mike123',
-     full_name: 'Michael Scofield', image_url: 'http://...',
-     provider: 'twitter', image_thumbnail: 'http://...',
-     colour: 'blue' }
+      uid: '4321', username: 'Mike123',
+      full_name: 'Michael Scofield', image_url: 'http://...',
+      provider: 'twitter', image_thumbnail: 'http://...',
+      colour: 'blue' }
     response.status.should be(200)
   end
 

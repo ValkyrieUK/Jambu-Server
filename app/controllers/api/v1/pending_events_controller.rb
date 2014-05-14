@@ -3,7 +3,7 @@ module Api
   # API Events controller
   module V1
     # API Events controller
-    class PendingEventsController < ApplicationController
+    class PendingEventsController < ApiController
       respond_to :json
 
       def show

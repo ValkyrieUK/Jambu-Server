@@ -2,10 +2,10 @@ require 'spec_helper'
 
 describe 'DeviceToken API' , type: :api do
   before(:each) do
-    @user = User.create(
-      provider: 'twitter', username: 'BillyBob',
-      image_url: 'http://...', image_thumbnail: 'http:..',
-      full_name: 'Bill Bob', uid: '1234', colour: 'blue')
+      @user = User.create(
+        provider: 'twitter', username: 'BillyBob',
+        image_url: 'http://...', image_thumbnail: 'http:..',
+        full_name: 'Bill Bob', uid: '1234', colour: 'blue')
     end
 
   it 'should be able to create a token' do

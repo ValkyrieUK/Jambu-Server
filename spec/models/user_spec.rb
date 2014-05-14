@@ -132,4 +132,9 @@ describe User do
     friendship = User.reflect_on_association(:friends)
     friendship.macro.should == :has_many
   end
+
+  it 'should search through user' do
+    search = User.search('Bill')
+    puts search
+  end
 end

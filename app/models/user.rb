@@ -1,6 +1,7 @@
 # User Class
 class User < ActiveRecord::Base
   after_create :track
+  # after_create :create_auth_token
 
   has_many :device_tokens, dependent: :destroy
   has_many :device_tokens, class_name: 'DeviceToken', foreign_key: 'user_id'
@@ -22,11 +23,11 @@ class User < ActiveRecord::Base
   end
 
   def attending_events_future
-    Event.joins(:invited_users).where("time_of_event > ?", Time.now.to_i.to_s).merge(Attendee.where(user_id: self, going?: true))
+    Event.joins(:invited_users).where('time_of_event > ?', Time.now.to_i.to_s).merge(Attendee.where(user_id: self, going?: true))
   end
 
   def attending_events_past
-      Event.joins(:invited_users).where("time_of_event < ?", Time.now.to_i.to_s).merge(Attendee.where(user_id: self, going?: true))
+    Event.joins(:invited_users).where('time_of_event < ?', Time.now.to_i.to_s).merge(Attendee.where(user_id: self, going?: true))
   end
 
   def attending_events
@@ -34,7 +35,7 @@ class User < ActiveRecord::Base
   end
 
   def pending_invites
-      Event.joins(:invited_users).where(canceled: 'false').merge(Attendee.where(user_id: self, going?: nil))
+    Event.joins(:invited_users).where(canceled: 'false').merge(Attendee.where(user_id: self, going?: nil))
   end
 
   def none?
@@ -43,5 +44,14 @@ class User < ActiveRecord::Base
 
   def track
     Activity.create(user_id: id, action: 'user created')
+  end
+
+# DO ME!!
+  def create_auth_token
+    loop do
+      key = SecureRandom.hex
+      break if User.find_by(auth_token: key).any?
+    end
+    self.update(auth_token: key)
   end
 end

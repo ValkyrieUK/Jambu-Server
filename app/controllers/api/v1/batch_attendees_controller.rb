@@ -3,8 +3,7 @@ module Api
   # BatchAttendeesController
   module V1
     # BatchAttendeesController
-    class BatchAttendeesController < ApplicationController
-
+    class BatchAttendeesController < ApiController
       def create
         if params[:attendees]
           params[:attendees].each do |user_uid|
@@ -13,7 +12,7 @@ module Api
             attendee.save!
           end
         end
-        render json: {response: "okay"}
+        render json: { response: 'okay' }
       end
 
       private

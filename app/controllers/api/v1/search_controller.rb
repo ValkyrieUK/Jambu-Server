@@ -3,7 +3,7 @@ module Api
 # API Search controller
   module V1
     # API Search controller
-    class SearchController < ApplicationController
+    class SearchController < ApiController
       respond_to :json
 
       def show

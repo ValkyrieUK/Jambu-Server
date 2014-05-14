@@ -3,7 +3,7 @@ module Api
   # API Feed controller
   module V1
     # API Feed controller
-    class FeedController < ApplicationController
+    class FeedController < ApiController
       respond_to :json
 
       def show

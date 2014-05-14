@@ -3,7 +3,7 @@ module Api
   # API Friendships controller
   module V1
     # API Friendships controller
-    class FriendshipsController < ApplicationController
+    class FriendshipsController < ApiController
       respond_to :json
 
       def show

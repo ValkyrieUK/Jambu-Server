@@ -3,7 +3,7 @@ module Api
   # API Attendees controller
   module V1
     # API Attendees controller
-    class AttendeesController < ApplicationController
+    class AttendeesController < ApiController
       respond_to :json
 
       def show

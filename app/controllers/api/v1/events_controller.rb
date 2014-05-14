@@ -3,7 +3,7 @@ module Api
   # API Events controller
   module V1
     # API Events controller
-    class EventsController < ApplicationController
+    class EventsController < ApiController
       respond_to :json
 
       def events_attending
@@ -43,7 +43,7 @@ module Api
         event = Event.find(params[:id])
         respond_with event.update(canceled: 'true')
         Activity.create(user_id: event.user_id, action: 'event canceled',
-                       name: event.title)
+                        name: event.title)
       end
 
       def event_params

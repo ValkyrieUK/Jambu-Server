@@ -19,15 +19,15 @@ class Event < ActiveRecord::Base
   end
 
   def track
-    Activity.create(user_id: user_id, action: 'event created', name: title, argument: self.id)
+    Activity.create(user_id: user_id, action: 'event created', name: title, argument: id)
   end
 
   def attending_users
-    attendees.where(going?: true).map {|attendee| User.find(attendee.user_id)}
+    attendees.where(going?: true).map { |attendee| User.find(attendee.user_id) }
   end
 
   def create_owner_attendee
-    Attendee.create(user_id: self.user_id, event_id: self.id, going?: true)
+    Attendee.create(user_id: user_id, event_id: id, going?: true)
   end
 
   def alert_attendees
@@ -35,8 +35,8 @@ class Event < ActiveRecord::Base
       e.device_tokens.each do |i|
         if i.os == 'iOS'
           APNS.send_notification(
-          i.token, :alert => "#{title} has been updated, Check the event to find out more!", :badge => 1, :sound => 'default', :other => {:p => 'eventUp', :pid => id.to_s}
-          ) unless self.canceled == 'true' || i.token.nil? || i.token == 'NONE'
+          i.token, alert: "#{title} has been updated, Check the event to find out more!", badge: 1, sound: 'default', other: { p: 'eventUp', pid: id.to_s }
+          ) unless canceled == 'true' || i.token.nil? || i.token == 'NONE'
         else
           gcm ||= GCM.new(Rails.application.config.gcm_key)
           message = { data: { message: "#{title} has been updated, Check the event to find out more!" } }

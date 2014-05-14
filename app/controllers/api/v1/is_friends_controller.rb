@@ -3,7 +3,7 @@ module Api
 # API Users controller
   module V1
     # API Users controller
-    class IsFriendsController < ApplicationController
+    class IsFriendsController < ApiController
       respond_to :json
 
       def show
