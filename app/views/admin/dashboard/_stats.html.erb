@@ -4,11 +4,6 @@
 <%= line_chart User.group_by_day(:created_at).count %>
 <br><br><br><br>
 
-<center><h1>Api Requests</h1></center>
-<center><h3><%= ApiRequest.count %> Api Requests</h3></center>
-<%= line_chart ApiRequest.group_by_day(:created_at).count %>
-<br><br><br><br>
-
 <center><h1>Devices Registered</h1></center>
 <center><h3><%= DeviceToken.count %> devices registered</h3></center>
 <%= pie_chart DeviceToken.group('os').count %>
