@@ -2,7 +2,7 @@
 class Event < ActiveRecord::Base
   reverse_geocoded_by :lat, :long
   after_create :track, :create_owner_attendee
-  after_initialize :nullify_time
+  after_initialize :nullify_time, :nullify_notified
   after_save :alert_attendees, on: :update
 
   belongs_to :user
@@ -16,6 +16,10 @@ class Event < ActiveRecord::Base
 
   def nullify_time
     self.time_of_event  ||= 'none'
+  end
+
+  def nullify_notified
+    self.notified  ||= false
   end
 
   def track
