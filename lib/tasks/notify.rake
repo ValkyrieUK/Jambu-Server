@@ -1,4 +1,3 @@
-
 namespace :notify do
   desc 'Check database for events about to occour'
   task :push => :environment do
@@ -20,12 +19,7 @@ namespace :notify do
             end
           end
         end
-        e.update(notified: true)
-      end
-      if Event.where(['time_of_event_end < ? AND canceled = ? AND notified = ?', Time.now.to_i.to_s, 'false', true])
-        Event.where(['time_of_event_end < ? AND canceled = ? AND notified = ?', Time.now.to_i.to_s, 'false', true]).each do |i|
-          i.update_attribute(:canceled, 'true')
-        end
+        e.update_attribute(:notified, true)
       end
     end
   end
