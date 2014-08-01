@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Invite Project Server
 =======================
 
@@ -18,3 +19,7 @@ Will return you a user with a record ID of 3
 ```
 export PGHOST=localhost
 ```
+=======
+Jambu-Server
+============
+>>>>>>> e72b878fd759ac0457a3ce8124d110620f53df75
